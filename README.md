@@ -1,8 +1,8 @@
 # Timestone
 
-- /web
+- /next
 
-  - React app w/ typescript
+  - Next app w/ typescript
   - WAGMI & ethers
 
 - /contracts
