@@ -57,7 +57,7 @@ const Explore: NextPage = () => {
           }}
         >
           <Container
-            maxWidth="xl"
+            maxWidth="lg"
             sx={{
               alignItems: "flex-start",
               display: "flex",
@@ -84,7 +84,7 @@ const Explore: NextPage = () => {
                   variant="h5"
                   style={{ lineHeight: "48px", fontSize: "28px" }}
                 >
-                  Recent Mints
+                  All Timestones (36)
                 </Typography>
               </Grid>
               <Grid item>

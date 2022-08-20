@@ -1,15 +1,19 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import type { ReactElement, ReactNode } from 'react';
 import ThemeProvider from "../theme/ThemeProvider";
-import MainLayout from "../components/MainLayout";
 import { WagmiConfig } from "wagmi";
 import { createClient, configureChains, defaultChains } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import createEmotionCache from '../createEmotionCache';
+import type { NextPage } from 'next';
 
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+
+import '../styles/globals.css';
 
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
   publicProvider(),
@@ -44,14 +48,31 @@ const client = createClient({
   webSocketProvider,
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+// Setup Emotion Cache for Material-UI
+const clientSideEmotionCache = createEmotionCache();
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+  Component: NextPageWithLayout;
+  pageProps: any;
+}
+
+function MyApp(props: MyAppProps) {
+
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const getLayout = Component.getLayout ?? ((page: any) => page);
+
   return (
     <WagmiConfig client={client}>
-      <ThemeProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </ThemeProvider>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </ThemeProvider>
+      </CacheProvider>
     </WagmiConfig>
   );
 }
