@@ -1,6 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
-import { Link as RouterLink, useNavigate, useLocation, matchPath } from 'react-router-dom';
-import { ConnectButton } from '../ConnectButton';
+import { useRef, useState, useEffect } from "react";
+// import {
+//   Link as RouterLink,
+//   useNavigate,
+//   useLocation,
+//   matchPath,
+// } from "react-router-dom";
+import { ConnectButton } from "../ConnectButton";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 import {
   AppBar,
@@ -9,43 +16,57 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
-} from '@mui/material';
+} from "@mui/material";
 
 // Top level Pages (Navigation)
 const navigationSections = [
   {
-    title: 'Explore',
-    path: '/explore',
+    title: "Explore",
+    path: "/explore",
   },
   {
-    title: 'Mint',
-    path: '/mint',
-  }
+    title: "Mint",
+    path: "/mint",
+  },
 ];
 
 function MainNavbar() {
-
   // Navigation hook
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
 
   // Router Location
-  const routerLocation = useLocation();
-  const isPartialMatch = (_p:any) => {
+  const routerPath = router.pathname;
+  const isPartialMatch = (_p: any) => {
     // Check if route is a partial match on path
-    return (_p) ? !!matchPath({
-      path: _p
-    }, routerLocation.pathname) : false;
+    console.log("_p", _p);
+    console.log("routerPath", routerPath);
+
+    const trimmedRoute = _p.split("/")[1];
+    console.log("trimmedRoute", trimmedRoute);
+    if (routerPath.includes(trimmedRoute)) {
+      console.log(true);
+      return true;
+    }
+    console.log(false);
+    return false;
+    // return _p
+    //   ? !!matchPath(
+    //       {
+    //         path: _p,
+    //       },
+    //       routerPath
+    //     )
+    //   : false;
   };
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AppBar
-      elevation={0}
-    >
-      <Toolbar sx={{ minHeight: 48, padding: '1rem' }} >
-        <RouterLink to="/">
+    <AppBar elevation={0}>
+      <Toolbar sx={{ minHeight: 48, padding: "1rem" }}>
+        <Link href="/">
           {/* {!isMobile ? (
             <img
               alt="timestone_logo"
@@ -68,40 +89,44 @@ function MainNavbar() {
             />
           )} */}
           <Typography variant="h2">TIMESTONE LOGO</Typography>
-        </RouterLink>
+        </Link>
         <Box sx={{ flexGrow: 1 }} />
-        {navigationSections && navigationSections.map((navigationSection) => (
-          <Box key={navigationSection.title}>
-            {!isMobile && (
-              <Box style={{ paddingRight: '2.3rem' }}>
-                <RouterLink to={navigationSection.path} className="navigation-link">
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      textDecoration: 'none',
-                      textTransform: 'none',
-                      color: '#000',
-                      '&:hover': {
-                        color: 'grey'
-                      },
-                      ...(isPartialMatch(navigationSection.path) && {
-                        color: 'white',
-                        paddingBottom: '4px',
-                        borderBottom: '1px solid grey',
-                      })
-                    }}
-                    style={{
-                      fontSize: '1rem',
-                      transition: 'all 0.1s ease-in-out'
-                    }}
+        {navigationSections &&
+          navigationSections.map((navigationSection) => (
+            <Box key={navigationSection.title}>
+              {!isMobile && (
+                <Box style={{ paddingRight: "2.3rem" }}>
+                  <Link
+                    href={navigationSection.path}
+                    className="navigation-link"
                   >
-                    {navigationSection.title}
-                  </Typography>
-                </RouterLink>
-              </Box>
-            )}
-          </Box>
-        ))}
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        textDecoration: "none",
+                        textTransform: "none",
+                        color: "#000",
+                        "&:hover": {
+                          color: "grey",
+                        },
+                        ...(isPartialMatch(navigationSection.path) && {
+                          color: "white",
+                          paddingBottom: "4px",
+                          borderBottom: "1px solid grey",
+                        }),
+                      }}
+                      style={{
+                        fontSize: "1rem",
+                        transition: "all 0.1s ease-in-out",
+                      }}
+                    >
+                      {navigationSection.title}
+                    </Typography>
+                  </Link>
+                </Box>
+              )}
+            </Box>
+          ))}
         <Box>
           <ConnectButton />
         </Box>
