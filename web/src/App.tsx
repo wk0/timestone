@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "React";
+import { useState } from "react";
 import { ConnectButton, IFrame } from "./components";
 import Button from "@mui/material/Button";
 
