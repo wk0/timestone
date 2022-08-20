@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import ThemeProvider from "../theme/ThemeProvider";
 
 import { WagmiConfig } from "wagmi";
 import { createClient, configureChains, defaultChains } from "wagmi";
@@ -46,7 +47,9 @@ const client = createClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={client}>
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </WagmiConfig>
   );
 }
