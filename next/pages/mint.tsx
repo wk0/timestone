@@ -104,7 +104,7 @@ const Mint: NextPage = () => {
           }}
         >
           <Container
-            maxWidth="xl"
+            maxWidth="lg"
             sx={{
               alignItems: "flex-start",
               display: "flex",

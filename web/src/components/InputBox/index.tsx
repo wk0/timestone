@@ -58,7 +58,7 @@ const InputBox = ({ prepopulate }:any) => {
       }}
     >
       <Container
-        maxWidth="xl"
+        maxWidth="lg"
         sx={{
           alignItems: 'flex-start',
           display: 'flex',
