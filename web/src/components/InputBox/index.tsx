@@ -54,7 +54,7 @@ const InputBox = (props: any) => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        pt: (!isMobile) ? 6 : 12
+        pt: (!isMobile) ? 6 : 6
       }}
       {...props}
     >

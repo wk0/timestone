@@ -2,15 +2,7 @@ import { useEffect, Suspense, lazy } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
 import HeroContent from '../components/HeroContent';
 import InputBox from '../components/InputBox';
-
-const Loadable = (Component:any) => (props:any) => (
-  <Suspense fallback={<LoadingScreen />}>
-    <Component {...props} />
-  </Suspense>
-);
-
-// Explore
-const Explore = Loadable(lazy(() => import('./Explore')));
+import Explore from './Explore';
 
 function Landing () {
 
@@ -19,6 +11,7 @@ function Landing () {
       <div>
         <HeroContent />
         <InputBox />
+        <Explore />
       </div>
     </>
   );
