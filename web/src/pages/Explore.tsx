@@ -57,7 +57,7 @@ const Explore = () => {
         <Grid container justifyContent="space-between" sx={{ mt: (isMobile) ? 2 : 0 }} alignItems="center">
           <Grid item>
             <Typography variant="h5" style={{ lineHeight: '48px', fontSize: '28px' }}>
-              Recent Mints
+              All Timestones (36)
             </Typography>
           </Grid>
           <Grid item>

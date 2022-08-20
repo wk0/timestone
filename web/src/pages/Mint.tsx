@@ -4,7 +4,10 @@ import { useState } from 'react';
 
 const steps = [
   {
-    label: 'Capture Screenshot',
+    label: 'Capture URL',
+  },
+  {
+    label: 'Connect Wallet',
   },
   {
     label: 'Mint as NFT',
@@ -44,12 +47,12 @@ const Mint = () => {
       case 0:
         return (
           <>
-            <Grid justifyContent="center" spacing={3}>
+            <Grid container alignItems="center" justifyContent="center" spacing={3} direction="column">
               <Grid item>
-                <InputBox prepopulate={"nytimes.com"} />
+                <img src="/demo_snapshot.png" alt="demo" style={{ maxHeight: '400px' }} />
               </Grid>
-              <Grid item>
-                <Box sx={{ maxWidth: 400 }}>
+              <Grid item sx={{ minWidth: 600 }}>
+                <Box>
                   <Autocomplete
                     multiple
                     id="tags-standard"
@@ -60,8 +63,8 @@ const Mint = () => {
                       <TextField
                         {...params}
                         variant="standard"
-                        label="Multiple values"
-                        placeholder="Favorites"
+                        label="Tags"
+                        placeholder="#twitter"
                       />
                     )}
                   />
@@ -79,23 +82,23 @@ const Mint = () => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        pt: 12,
+        pt: 4,
       }}
     >
       <Container
         maxWidth="xl"
         sx={{
-          alignItems: 'flex-start',
+          alignItems: 'center',
           display: 'flex',
           flexDirection: 'column',
           px: {
-            md: '130px !important',
+            md: '150px !important',
             xs: 4
           }
         }}
       >
-        <Box>
-          <Stepper activeStep={activeStep} orientation="vertical">
+        <Box sx={{ width: '100%' }}>
+          <Stepper activeStep={activeStep} sx={{ mx: 12 }}>
             {steps.map((step, index) => (
               <Step key={step.label}>
                 <StepLabel
@@ -108,32 +111,32 @@ const Mint = () => {
                 >
                   {step.label}
                 </StepLabel>
-                <StepContent>
-                  <Box sx={{ width: '100%' }}>
-                    {getStepContent(index)}
-                  </Box>
-                  <Box sx={{ mb: 1, mt: 3, ml: 2, textAlign: 'left' }}>
-                    <div>
-                      <Button
-                        variant="contained"
-                        onClick={handleNext}
-                        sx={{ mt: 1, mr: 1 }}
-                      >
-                        {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                      </Button>
-                      <Button
-                        disabled={index === 0}
-                        onClick={handleBack}
-                        sx={{ mt: 1, mr: 1 }}
-                      >
-                        Back
-                      </Button>
-                    </div>
-                  </Box>
-                </StepContent>
               </Step>
             ))}
           </Stepper>
+          <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%' }}>
+              {getStepContent(activeStep)}
+            </Box>
+            <Box sx={{ mb: 1, mt: 3, ml: 2, textAlign: 'center' }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
+                </Button>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  Back
+                </Button>
+              </div>
+            </Box>
+          </Box>
         </Box>
       </Container>
     </Box>
