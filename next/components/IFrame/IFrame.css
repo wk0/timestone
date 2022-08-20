@@ -1,0 +1,9 @@
+.embed-wrapper > iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
