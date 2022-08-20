@@ -100,35 +100,35 @@ const baseOptions = {
     button: {
       fontWeight: 600
     },
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+    fontFamily: '"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
     h1: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '3.5rem'
     },
     h2: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '3rem'
     },
     h3: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '2.25rem'
     },
     h4: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '2rem'
     },
     h5: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '1.5rem'
     },
     h6: {
       fontWeight: 600,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'Plus Jakarta Sans',
       fontSize: '1.125rem'
     },
     overline: {
@@ -192,7 +192,7 @@ const themesOptions = {
 };
 
 export const createCustomTheme = (config:any) => {
-  
+
   let themeOptions = themesOptions[config.theme];
 
   if (!themeOptions) {
