@@ -11,7 +11,7 @@ const CustomizedInputBase = (props: any) => {
   return (
     <Paper
       component="form"
-      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: 600, height: 75, borderRadius: '16px', fontSize: '30px!important' }}
+      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: 500, height: 75, borderRadius: '16px', fontSize: '30px!important' }}
     >
       <InputBase
         sx={{ ml: 2, flex: 1, mt: '0px' }}
@@ -26,12 +26,12 @@ const CustomizedInputBase = (props: any) => {
   );
 };
 
-const InputBox = (props: any) => {
+const InputBox = ({ prepopulate }:any) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [urlInput, setUrlInput] = useState("");
+  const [urlInput, setUrlInput] = useState(prepopulate as string | "");
   const handleUrlInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = ev.target.value.trim();
     setUrlInput(formatted);
@@ -54,9 +54,8 @@ const InputBox = (props: any) => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        pt: (!isMobile) ? 6 : 12
+        pt: (!isMobile) ? 6 : 6
       }}
-      {...props}
     >
       <Container
         maxWidth="xl"

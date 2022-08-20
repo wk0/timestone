@@ -18,8 +18,8 @@ const navigationSections = [
     path: '/explore',
   },
   {
-    title: 'Create',
-    path: '/create',
+    title: 'Mint',
+    path: '/mint',
   }
 ];
 
