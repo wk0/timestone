@@ -2,6 +2,7 @@ import { Box, Container, Typography, Grid, useTheme, useMediaQuery, Paper, Input
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { useEffect, useState } from 'react';
 import FilterTiltShiftIcon from '@mui/icons-material/FilterTiltShift';
+import Mint from '../Mint';
 
 // Custom themed from Material-Ui InputBase component 
 const CustomizedInputBase = (props: any) => {
@@ -26,7 +27,7 @@ const CustomizedInputBase = (props: any) => {
   );
 };
 
-const InputBox = ({ prepopulate }:any) => {
+const InputBox = ({ prepopulate }: any) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -36,10 +37,20 @@ const InputBox = ({ prepopulate }:any) => {
     const formatted = ev.target.value.trim();
     setUrlInput(formatted);
   };
+
+  const [showMint, setShowMint] = useState(false);
+
+  const triggerSnapshot = () => {
+    setIsSnapshotting(true);
+    setTimeout(() => {
+      setIsSnapshotting(false);
+      setShowMint(true);
+    }, 1500);
+  };
+
   const onKeyPress = (ev: React.KeyboardEvent<HTMLInputElement>) => {
     if (ev.key === "Enter") {
-      // TODO: trigger snapshot
-      setIsSnapshotting(true);
+      triggerSnapshot();
       ev.stopPropagation();
       ev.preventDefault();
     }
@@ -54,7 +65,7 @@ const InputBox = ({ prepopulate }:any) => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        pt: (!isMobile) ? 6 : 6
+        pt: 2
       }}
     >
       <Container
@@ -82,6 +93,9 @@ const InputBox = ({ prepopulate }:any) => {
           </LoadingButton>
         </Grid>
       </Container>
+      {showMint && (
+        <Mint />
+      )}
     </Box>
   );
 };
