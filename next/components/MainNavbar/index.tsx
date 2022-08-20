@@ -1,10 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-// import {
-//   Link as RouterLink,
-//   useNavigate,
-//   useLocation,
-//   matchPath,
-// } from "react-router-dom";
 import { ConnectButton } from "../ConnectButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -88,7 +82,7 @@ function MainNavbar() {
               }}
             />
           )} */}
-          <Typography variant="h2">TIMESTONE LOGO</Typography>
+          <Typography variant="h2" sx={{ color: 'black', fontSize: '16px' }}>TIMESTONE LOGO</Typography>
         </Link>
         <Box sx={{ flexGrow: 1 }} />
         {navigationSections &&

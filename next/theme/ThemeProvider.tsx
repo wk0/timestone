@@ -5,11 +5,7 @@ import { StylesProvider } from '@mui/styles';
 
 export const ThemeContext = createContext((_themeName: string): void => {});
 
-type ThemeProviderWrapperProps = {
-  children: React.ReactNode,
-}
-
-const ThemeProviderWrapper = (props: ThemeProviderWrapperProps) => {
+const ThemeProviderWrapper = (props: any) => {
   const [themeName, _setThemeName] = useState('CustomTheme');
 
   useEffect(() => {
