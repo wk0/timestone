@@ -1,15 +1,18 @@
 import "./App.css";
 import { ConnectButton } from "./components";
-import Button from '@mui/material/Button';
+import ThemeProvider from './theme/ThemeProvider';
+import routes from "./routes";
+import { useRoutes, BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
+const App = () => {
+
+  const content = useRoutes(routes);
+
   return (
-    <div>
-      <h1>Timestone</h1>
-      <ConnectButton />
-      <Button variant="contained">Hello World</Button>
-    </div>
+    <ThemeProvider>
+      {content}
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
