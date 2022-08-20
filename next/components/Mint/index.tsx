@@ -3,17 +3,20 @@ import {
   Container,
   Stepper,
   Typography,
+  Dialog,
   Step,
   CircularProgress,
   StepLabel,
   Button,
   Autocomplete,
   TextField,
+  Stack,
   Grid,
 } from "@mui/material";
 import { useState, useCallback, useEffect, useRef, createRef } from 'react';
 import Cropper from 'react-easy-crop';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import getCroppedImg from './CropImage';
 
 const steps = [
   {
@@ -52,15 +55,38 @@ interface Snapshot {
 
 const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
 
+  // Dialog State
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
-    if (activeStep === 2) {
+    if (activeStep === 0) {
+      // Crop Image
+      cropImage();
+
+      // Advance Step
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (activeStep === 2) {
       // Open Mint Status Dialog 
-      // Open Contract Interaction
+      setDialogOpen(true);
+
+      // Trigger Mint
+      triggerMint();
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
+  };
+
+  // Handle Minting of NFT
+  const triggerMint = () => {
+    // Trigger Contract Interaction 
   };
 
   const handleBack = () => {
@@ -154,16 +180,16 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
           <>
             <Grid container direction="column" alignItems="center" justifyContent="center" sx={{ my: 2 }}>
               <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 3 }}>
-                <div
+                {/* <div
                   style={{
                     width: '100%',
                     paddingTop: '50%',
                     backgroundImage: `url('${snapshot?.full_image_url}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: `center -${cropStepOffsets?.pre}px`,
-                    outline: '3px solid #2ECC71',
                   }}
-                />
+                /> */}
+                <img src={croppedImgData || ""} alt="preview" style={{ width: '100%' }} />
               </Grid>
               <Grid item>
 
@@ -217,6 +243,20 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
   // On Crop Complete
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
+  const [croppedImgData, setCroppedImgData] = useState(null);
+  const cropImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(snapshot?.full_image_url, croppedAreaPixels);
+      setCroppedImgData(croppedImage as any);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels]);
+
+  useEffect(() => {
+    console.log(croppedImgData);
+  }, [croppedImgData]);
+
   const onCropComplete = useCallback((croppedArea: any, _croppedAreaPixels: any) => {
     setCroppedAreaPixels(_croppedAreaPixels);
   }, []);
@@ -241,77 +281,96 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
   }
 
   return (
-    <div>
-      <Box
-        sx={{
-          backgroundColor: "background.paper",
-          pt: 4,
-        }}
-      >
-        <Container
-          maxWidth="xl"
+    <>
+      <div>
+        <Box
           sx={{
-            alignItems: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            px: {
-              md: '150px !important',
-              xs: 4
-            }
+            backgroundColor: "background.paper",
+            pt: 4,
           }}
         >
-          {isSnapshotting ? (
-            <Box sx={{ justifyContent: 'center', minHeight: 500 }}>
-              <Typography variant="subtitle1">Capturing snapshot...</Typography>
-            </Box>
-          ) : (
-            <Box sx={{ width: '100%' }}>
-              <Box sx={{ mx: 12 }}>
-                <Stepper activeStep={activeStep} sx={{ mx: 24 }}>
-                  {steps.map((step, index) => (
-                    <Step key={step.label}>
-                      <StepLabel
-                        optional={
-                          index === 2 ? (
-                            <>
-                            </>
-                          ) : null
-                        }
-                      >
-                        {step.label}
-                      </StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
+          <Container
+            maxWidth="xl"
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              px: {
+                md: '150px !important',
+                xs: 4
+              }
+            }}
+          >
+            {isSnapshotting ? (
+              <Box sx={{ justifyContent: 'center', minHeight: 500 }}>
+                <Typography variant="subtitle1">Capturing snapshot...</Typography>
               </Box>
+            ) : (
               <Box sx={{ width: '100%' }}>
-                <Box sx={{ width: '100%' }}>
-                  {getStepContent(activeStep)}
+                <Box sx={{ mx: 12 }}>
+                  <Stepper activeStep={activeStep} sx={{ mx: 24 }}>
+                    {steps.map((step, index) => (
+                      <Step key={step.label}>
+                        <StepLabel
+                          optional={
+                            index === 2 ? (
+                              <>
+                              </>
+                            ) : null
+                          }
+                        >
+                          {step.label}
+                        </StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
                 </Box>
-                <Box sx={{ mb: 1, mt: 3, ml: 2, textAlign: 'center' }}>
-                  <div>
-                    <Button
-                      variant="contained"
-                      onClick={handleNext}
-                      sx={{ mt: 1, mr: 1 }}
-                    >
-                      {activeStep === steps.length - 1 ? 'Mint as NFT' : 'Continue'}
-                    </Button>
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      sx={{ mt: 1, mr: 1 }}
-                    >
-                      Back
-                    </Button>
-                  </div>
+                <Box sx={{ width: '100%' }}>
+                  <Box sx={{ width: '100%' }}>
+                    {getStepContent(activeStep)}
+                  </Box>
+                  <Box sx={{ mb: 1, mt: 3, ml: 2, textAlign: 'center' }}>
+                    <div>
+                      <Button
+                        variant="contained"
+                        onClick={handleNext}
+                        sx={{ mt: 1, mr: 1 }}
+                      >
+                        {activeStep === steps.length - 1 ? 'Mint as NFT' : 'Continue'}
+                      </Button>
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                        sx={{ mt: 1, mr: 1 }}
+                      >
+                        Back
+                      </Button>
+                    </div>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          )}
-        </Container>
-      </Box>
-    </div>
+            )}
+          </Container>
+        </Box>
+      </div>
+      <Dialog
+        fullWidth
+        maxWidth="md"
+        open={dialogOpen}
+        onClose={handleDialogClose}>
+        <Stack spacing={4} sx={{ width: '100%', my: 8 }} alignItems="center" justifyContent="center">
+          <Box>
+            <img src="/timestone_icon.png" alt="timestone icon" style={{ maxHeight: '64px' }} />
+          </Box>
+          <Box>
+            <CircularProgress />
+          </Box>
+          <Box>
+            <Typography variant="h5" sx={{ fontSize: '20px' }}>Your Timestone is minting...</Typography>
+          </Box>
+        </Stack>
+      </Dialog>
+    </>
   );
 };
 
