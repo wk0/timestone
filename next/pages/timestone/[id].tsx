@@ -19,13 +19,13 @@ const fetcher = async (url: string) => {
 export default function TimestoneItem() {
   const router = useRouter();
   const { query } = useRouter();
-  const { data, error } = useSWR(
-    () => query.id && `/api/item/${query.id}`,
-    fetcher
-  );
+  // const { data, error } = useSWR(
+  //   () => query.id && `/api/item/${query.id}`,
+  //   fetcher
+  // );
 
-  if (error) return <div>{error.message}</div>;
-  if (!data) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
+  // if (!data) return <div>Loading...</div>;
 
   return (
     <div>
@@ -37,11 +37,7 @@ export default function TimestoneItem() {
 
       <main>
         <div>
-          <h1>Timestone</h1>
-          <button type="button" onClick={() => router.push("/")}>
-            Home
-          </button>
-          <Box>Timestone Page</Box>
+          <Box>Timestone {query.id} Page</Box>
         </div>
       </main>
     </div>
