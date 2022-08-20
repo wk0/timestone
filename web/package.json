@@ -12,6 +12,7 @@
     "@mui/material": "^5.10.1",
     "@mui/styled-engine-sc": "npm:@mui/styled-engine-sc@latest",
     "ethers": "^5.7.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5",
