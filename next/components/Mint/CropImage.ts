@@ -1,4 +1,4 @@
-export const createImage = (url) => new Promise((resolve, reject) => {
+export const createImage = (url:any) => new Promise((resolve, reject) => {
   const image = new Image();
   image.addEventListener('load', () => resolve(image));
   image.addEventListener('error', (error) => reject(error));
@@ -6,14 +6,14 @@ export const createImage = (url) => new Promise((resolve, reject) => {
   image.src = `${url}`;
 });
 
-export function getRadianAngle(degreeValue) {
+export function getRadianAngle(degreeValue:any) {
   return (degreeValue * Math.PI) / 180;
 }
 
 /**
  * Returns the new bounding area of a rotated rectangle.
  */
-export function rotateSize(width, height, rotation) {
+export function rotateSize(width:any, height:any, rotation:any) {
   const rotRad = getRadianAngle(rotation);
   return {
     width:
@@ -27,12 +27,12 @@ export function rotateSize(width, height, rotation) {
  * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
  */
 export default async function getCroppedImg(
-  imageSrc,
-  pixelCrop,
+  imageSrc:any,
+  pixelCrop:any,
   rotation = 0,
   flip = { horizontal: false, vertical: false }
 ) {
-  const image = await createImage(imageSrc);
+  const image: HTMLImageElement = await createImage(imageSrc) as HTMLImageElement;
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -43,11 +43,7 @@ export default async function getCroppedImg(
   const rotRad = getRadianAngle(rotation);
 
   // calculate bounding box of the rotated image
-  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
-    image.width,
-    image.height,
-    rotation
-  );
+  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(image.width, image.height, rotation);
 
   // set canvas size to match the bounding box
   canvas.width = bBoxWidth;

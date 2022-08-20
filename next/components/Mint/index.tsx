@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useState, useCallback, useEffect, useRef, createRef } from 'react';
 import Cropper from 'react-easy-crop';
+import LegacyRef from 'react-easy-crop';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import getCroppedImg from './CropImage';
 
@@ -108,6 +109,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                   {snapshot && (
                     <Box style={{ outline: '3px solid #2ECC71', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
                       <Cropper
+                        //@ts-ignore
                         ref={divRef}
                         image={snapshot.full_image_url}
                         crop={crop}
@@ -214,8 +216,6 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
   // Crop Flow - State
   const [loadingState, setLoadingState] = useState([false, false, false]);
 
-  const cropRef = useRef(null);
-
   const divRef = useRef();
   const [dimensions, setDimensions] = useState({ width: 1, height: 2 });
   const [imageDimensions, setImageDimensions] = useState({ width: 1, height: 2 });
@@ -229,7 +229,9 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
     setCrop({ x: 0, y: (mediaSize.height / 2) });
     const { current } = divRef;
     console.log(current);
+    //@ts-ignore
     setDimensions({ width: current?.containerRect?.width, height: current?.containerRect?.height });
+    //@ts-ignore
     setImageDimensions({ width: current?.mediaSize?.width, height: current?.mediaSize?.height, actualWidth: current?.mediaSize?.naturalWidth, actualHeight: current?.mediaSize?.naturalHeight });
     setIsLoaded(true);
   };
