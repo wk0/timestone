@@ -30,7 +30,7 @@ function MainNavbar() {
 
   // Router Location
   const routerLocation = useLocation();
-  const isPartialMatch = (_p) => {
+  const isPartialMatch = (_p:any) => {
     // Check if route is a partial match on path
     return (_p) ? !!matchPath({
       path: _p

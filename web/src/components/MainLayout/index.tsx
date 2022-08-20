@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import MainNavbar from '../MainNavbar';
 
-type MainLayoutProps = {
-  children: React.ReactNode,
-}
-
-function MainLayout({ children }: MainLayoutProps) {
+function MainLayout({ children }:any) {
   return (
     <div>
       <MainNavbar />
