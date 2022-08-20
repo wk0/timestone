@@ -1,0 +1,23 @@
+{
+  "name": "timestone",
+  "version": "1.0.0",
+  "description": "NFT Web Archives",
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "contracts/src/**/*.sol"
+  ],
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19"
+  },
+  "scripts": {
+    "setup": "make clean && make build",
+    "sync": "make update",
+    "test": "make test",
+    "snapshot": "make snapshot",
+    "format": "make format",
+    "lint": "make lint",
+    "all": "make all"
+  }
+}
