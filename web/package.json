@@ -9,8 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/material": "^5.10.1",
-    "@mui/styled-engine-sc": "npm:@mui/styled-engine-sc@latest",
+    "@mui/base": "5.0.0-alpha.90",
+    "@mui/icons-material": "5.8.4",
+    "@mui/lab": "5.0.0-alpha.91",
+    "@mui/material": "5.9.1",
+    "@mui/styles": "5.9.1",
+    "@mui/system": "5.9.1",
     "ethers": "^5.7.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -24,8 +28,5 @@
     "@vitejs/plugin-react": "^2.0.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.7"
-  },
-  "resolutions": {
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   }
 }
