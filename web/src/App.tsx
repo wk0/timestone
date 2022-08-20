@@ -1,17 +1,16 @@
 import "./App.css";
 import { ConnectButton } from "./components";
-import HeroContent from "./components/HeroContent";
-import InputBox from './components/InputBox';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import ThemeProvider from './theme/ThemeProvider';
+import routes from "./routes";
+import { useRoutes, BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
 
+  const content = useRoutes(routes);
+
   return (
     <ThemeProvider>
-      <HeroContent />
-      <InputBox />
+      {content}
     </ThemeProvider>
   );
 };

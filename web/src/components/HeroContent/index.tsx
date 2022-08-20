@@ -12,7 +12,7 @@ const HeroContent = (props:any) => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        pt: (!isMobile) ? 6 : 12
+        pt: 12,
       }}
       {...props}
     >
