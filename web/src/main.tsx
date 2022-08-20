@@ -10,6 +10,8 @@ import {
   configureChains,
 } from "wagmi";
 
+import { BrowserRouter } from 'react-router-dom';
+
 // import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
@@ -56,7 +58,9 @@ const client = createClient({
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <WagmiConfig client={client}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </WagmiConfig>
   </React.StrictMode>
 );
