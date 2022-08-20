@@ -52,7 +52,7 @@ const HeroContent = (props:any) => {
                   variant="body1"
                   sx={{ pt: 1, pb: 0, fontFamily: 'Plus Jakarta Sans', fontSize: '1.3rem' }}
                 >
-                  mint provably real screenshots of any internet URL at a moment in time, as a tradeable NFT
+                  mint provably real screenshots of any internet URL, as a tradeable NFT
                 </Typography>
               </Box>
             </Grid>
@@ -63,6 +63,5 @@ const HeroContent = (props:any) => {
     </Box>
   );
 };
-
 
 export default HeroContent;

@@ -357,12 +357,6 @@ export const CustomTheme = createTheme({
           width: '100%',
           flex: 1
         },
-        '#__next': {
-          width: '100%',
-          display: 'flex',
-          flex: 1,
-          flexDirection: 'column'
-        },
         html: {
           display: 'flex',
           flexDirection: 'column',
@@ -447,38 +441,6 @@ export const CustomTheme = createTheme({
         },
         icon: {
           top: 'calc(50% - 14px)'
-        }
-      }
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        input: {
-          '&[type=number]': {
-            '-moz-appearance': 'textfield'
-          },
-          '&::-webkit-outer-spin-button': {
-            '-webkit-appearance': 'none',
-            margin: 0
-          },
-          '&::-webkit-inner-spin-button': {
-            '-webkit-appearance': 'none',
-            margin: 0
-          }
-        }
-      }
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          '& .MuiInputAdornment-positionEnd.MuiInputAdornment-outlined': {
-            paddingRight: 6
-          },
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: colors.alpha.black[50]
-          },
-          '&.Mui-focused:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: colors.primary.main
-          }
         }
       }
     },
@@ -839,25 +801,6 @@ export const CustomTheme = createTheme({
         }
       }
     },
-    // MuiTabs: {
-    //   styleOverrides: {
-    //     root: {
-    //       height: 38,
-    //       minHeight: 38,
-    //       overflow: 'visible'
-    //     },
-    //     indicator: {
-    //       height: 38,
-    //       minHeight: 38,
-    //       borderRadius: 6,
-    //       border: '1px solid ' + colors.primary.dark,
-    //       boxShadow: '0px 2px 10px ' + colors.primary.light
-    //     },
-    //     scrollableX: {
-    //       overflow: 'visible !important'
-    //     }
-    //   }
-    // },
     MuiTab: {
       styleOverrides: {
         root: {
@@ -922,95 +865,11 @@ export const CustomTheme = createTheme({
         }
       }
     },
-    MuiAutocomplete: {
-      styleOverrides: {
-        tag: {
-          margin: 1
-        },
-        root: {
-          '.MuiAutocomplete-inputRoot.MuiOutlinedInput-root .MuiAutocomplete-endAdornment':
-            {
-              right: 14
-            }
-        },
-        clearIndicator: {
-          background: colors.error.lighter,
-          color: colors.error.main,
-          marginRight: 8,
-
-          '&:hover': {
-            background: colors.error.lighter,
-            color: colors.error.dark
-          }
-        },
-        popupIndicator: {
-          color: colors.alpha.black[50],
-
-          '&:hover': {
-            background: colors.primary.lighter,
-            color: colors.primary.main
-          }
-        }
-      }
-    },
-    MuiTablePagination: {
-      styleOverrides: {
-        toolbar: {
-          '& .MuiIconButton-root': {
-            padding: 8
-          }
-        },
-        select: {
-          '&:focus': {
-            backgroundColor: 'transparent'
-          }
-        }
-      }
-    },
     MuiToolbar: {
       styleOverrides: {
         root: {
           minHeight: '0 !important',
           padding: '0 !important'
-        }
-      }
-    },
-    // MuiTableRow: {
-    //   styleOverrides: {
-    //     head: {
-    //       background: colors.alpha.black[5]
-    //     },
-    //     root: {
-    //       transition: 'background-color .2s',
-
-    //       '&.MuiTableRow-hover:hover': {
-    //         backgroundColor: colors.alpha.black[5]
-    //       }
-    //     }
-    //   }
-    // },
-    // MuiTableCell: {
-    //   styleOverrides: {
-    //     root: {
-    //       borderBottomColor: colors.alpha.black[10],
-    //       fontSize: 14
-    //     },
-    //     head: {
-    //       textTransform: 'uppercase',
-    //       fontSize: 13,
-    //       fontWeight: 'bold',
-    //       color: colors.alpha.black[70]
-    //     }
-    //   }
-    // },
-    MuiTableHead: {
-      styleOverrides: {
-        root: {
-          '.MuiTableCell-root': {
-            fontSize: 11,
-            fontWeight: 600,
-            textTransform: 'uppercase'
-          }
         }
       }
     },
@@ -1155,31 +1014,6 @@ export const CustomTheme = createTheme({
         }
       }
     },
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          h1: 'h1',
-          h2: 'h2',
-          h3: 'div',
-          h4: 'div',
-          h5: 'div',
-          h6: 'div',
-          subtitle1: 'div',
-          subtitle2: 'div',
-          body1: 'div',
-          body2: 'div'
-        }
-      },
-      styleOverrides: {
-        gutterBottom: {
-          marginBottom: 4
-        },
-        paragraph: {
-          fontSize: 17,
-          lineHeight: 1.7
-        }
-      }
-    }
   },
   shape: {
     borderRadius: 10
