@@ -32,7 +32,7 @@ const InputBox = ({ prepopulate }: any) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [urlInput, setUrlInput] = useState(prepopulate as string | "");
+  const [urlInput, setUrlInput] = useState("");
   const handleUrlInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = ev.target.value.trim();
     setUrlInput(formatted);
@@ -40,12 +40,13 @@ const InputBox = ({ prepopulate }: any) => {
 
   const [showMint, setShowMint] = useState(false);
 
+  const [isSnapshotting, setIsSnapshotting] = useState(false);
   const triggerSnapshot = () => {
+    setShowMint(true);
     setIsSnapshotting(true);
     setTimeout(() => {
       setIsSnapshotting(false);
-      setShowMint(true);
-    }, 1500);
+    }, 2000);
   };
 
   const onKeyPress = (ev: React.KeyboardEvent<HTMLInputElement>) => {
@@ -54,11 +55,6 @@ const InputBox = ({ prepopulate }: any) => {
       ev.stopPropagation();
       ev.preventDefault();
     }
-  };
-
-  const [isSnapshotting, setIsSnapshotting] = useState(false);
-  const handleSnapshotTrigger = () => {
-
   };
 
   return (
@@ -86,7 +82,7 @@ const InputBox = ({ prepopulate }: any) => {
             disabled={!urlInput}
             loading={isSnapshotting}
             variant="text"
-            onClick={handleSnapshotTrigger}
+            onClick={triggerSnapshot}
             style={{ marginLeft: '1.1rem', borderRadius: '16px', paddingLeft: '8px', paddingRight: '8px', width: '75px' }}
           >
             <FilterTiltShiftIcon style={{ fontSize: '38px' }} />
@@ -94,7 +90,7 @@ const InputBox = ({ prepopulate }: any) => {
         </Grid>
       </Container>
       {showMint && (
-        <Mint />
+        <Mint urlInput={urlInput} isSnapshotting={isSnapshotting} />
       )}
     </Box>
   );

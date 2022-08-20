@@ -17,7 +17,7 @@ const HeroContent = (props: any) => {
     <Box
       sx={{
         backgroundColor: "background.paper",
-        pt: 12,
+        pt: 4,
       }}
       {...props}
     >
