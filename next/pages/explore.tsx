@@ -18,16 +18,28 @@ import ExploreGrid from "../components/ExploreGrid";
 
 const timestones = [
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://nytimes.com",
+    image_url: "/bitcoin.png",
+    capture_url: "https://bitcoin.org",
   },
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://google.com",
+    image_url: "/tesla.png",
+    capture_url: "https://twitter.com/elon-musk",
   },
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://twitter.com",
+    image_url: "/snopes.png",
+    capture_url: "https://snopes.news",
+  },
+  {
+    image_url: "/eth-bogota.png",
+    capture_url: "https://ethbogota.com/",
+  },
+  {
+    image_url: "/wsb.png",
+    capture_url: "https://reddit.com/r/wsb",
+  },
+  {
+    image_url: "/mexico.png",
+    capture_url: "https://weathe.com",
   },
 ];
 const Explore: NextPage = () => {
