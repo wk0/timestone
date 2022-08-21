@@ -8,7 +8,7 @@ const themeColors = {
   warning: '#FFA319',
   error: '#FF1943',
   info: '#33C2FF',
-  black: '#000',
+  black: '#101012',
   white: '#ffffff',
   primaryAlt: '#000C57'
 };
@@ -571,8 +571,6 @@ export const CustomTheme = createTheme({
         root: {
           borderRadius: 0,
           textTransform: 'uppercase',
-          paddingLeft: 16,
-          paddingRight: 16,
           fontFamily: 'Courier Prime',
 
           '.MuiSvgIcon-root': {
@@ -727,7 +725,7 @@ export const CustomTheme = createTheme({
           boxShadow: 'none'
         },
         elevation: {
-          boxShadow: colors.shadows.card
+         border: '1px solid black',
         },
         elevation2: {
           boxShadow: colors.shadows.cardSm

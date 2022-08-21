@@ -59,9 +59,9 @@ function MainNavbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AppBar elevation={0}>
+    <AppBar elevation={0} style={{ border: '0' }}>
       <Toolbar sx={{ minHeight: 48, padding: "1rem" }}>
-        <Link href="/">
+        {/* <Link href="/"> */}
           {/* {!isMobile ? (
             <img
               alt="timestone_logo"
@@ -83,11 +83,13 @@ function MainNavbar() {
               }}
             />
           )} */}
-          <Typography variant="h2" sx={{ color: 'black', fontSize: '24px', fontFamily: 'Bebas Neue' }}>TIMESTONE</Typography>
-        </Link>
-        <Typography sx={{ ml: 4 }}>
+          
+          {/* <Typography variant="h2" sx={{ color: 'black', fontSize: '24px', fontFamily: 'Bebas Neue' }}>TIMESTONE</Typography> */}
+
+        {/* </Link> */}
+        {/* <Typography sx={{ ml: 4 }}>
           Made with ❤️ at ETHMexico (🇲🇽)
-        </Typography>
+        </Typography> */}
         <Box sx={{ flexGrow: 1 }} />
         {navigationSections &&
           navigationSections.map((navigationSection) => (

@@ -12,7 +12,7 @@ const CustomizedInputBase = (props: any) => {
   return (
     <Paper
       component="form"
-      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: 500, height: 75, borderRadius: 0, fontSize: '30px!important' }}
+      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: '95%', maxWidth: 800, height: 75, borderRadius: 0, fontSize: '30px!important' }}
     >
       <InputBase
         sx={{ ml: 2, flex: 1, mt: '0px' }}
@@ -71,7 +71,7 @@ const InputBox = ({ prepopulate }: any) => {
           display: 'flex',
           flexDirection: 'column',
           px: {
-            md: '130px !important',
+            md: '50px !important',
             xs: 4
           }
         }}
@@ -83,11 +83,20 @@ const InputBox = ({ prepopulate }: any) => {
             loading={isSnapshotting}
             variant="text"
             onClick={triggerSnapshot}
-            style={{ marginLeft: '1.1rem', borderRadius: 0, paddingLeft: '8px', paddingRight: '8px', width: '75px' }}
-          >
-            <FilterTiltShiftIcon style={{ fontSize: '38px' }} />
+            style={{ marginLeft: '1.1rem', borderRadius: 0, width: '200px', fontSize: '30px',  fontWeight: '500', color: '#101012', backgroundColor: '#28ED9E' }}
+          > Start
+            {/* <FilterTiltShiftIcon style={{ fontSize: '0' }} /> */}
           </LoadingButton>
         </Grid>
+        <Box style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+          <Typography style={{ fontSize: '22px',  color: '#101012', marginTop: '20px'}}
+            color="textSecondary"
+            variant="body1"
+            sx={{fontFamily: 'Cardo', fontSize: '1.3rem' }}
+          >
+            (Update the website’s URL to get started)
+          </Typography>
+        </Box>
       </Container>
       {showMint && (
         <Mint urlInput={urlInput} isSnapshotting={isSnapshotting} />
