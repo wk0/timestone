@@ -5,6 +5,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import datauri from 'datauri'
 import { v4 as uuidv4 } from 'uuid';
+import filenamifyUrl from 'filenamify-url';
 
 type DataRes = {
   snapshot: string
@@ -37,11 +38,19 @@ export default async function handler(
   const { url } = req.body
   console.log('url', url)
   const externalUrl = url as string
+  // let cleanedURL;
+  // if (externalUrl.includes("http://www.") || externalUrl.includes("https://www.")) {
+  //   cleanedURL = externalUrl;
+  // }
+  // else {
+  //   cleanedURL = `https://www.${externalUrl}`
+  // }
+  console.log('externalUrl', externalUrl)
 
   const id = uuidv4();
   const write = path.join(__dirname, '/snapshots')
   console.log(write)
-  if (checkURL(externalUrl)) {
+  if (externalUrl) {
     try {
       await new Pageres({
         delay: 1,
@@ -52,17 +61,21 @@ export default async function handler(
         .dest(path.join(__dirname, '/snapshots'))
         .run();
 
-            
-      const trimmedUrl = url.split('//')[1]
-      const outputPath = path.join(__dirname, '/snapshots', `/${trimmedUrl}-800x600.png`);
+
+      const slugified = filenamifyUrl(externalUrl);
+      console.log(slugified);
+      // const trimmedUrl = externalUrl.split('//www.')[1]
+      const outputPath = path.join(__dirname, '/snapshots', `${slugified}-800x600.png`);
+      console.log(outputPath)
       const uri = await datauri(outputPath);
       if (uri) {
         res.status(201).send({ snapshot: uri })
       }
-      res.status(500);
+      res.status(500).send({ message: 'DataURI failed!'});;
     }
     catch (e) {
-      return res.status(500);
+      console.log(e)
+      return res.status(500).send({ message: `Check URL failed! ${externalUrl}, ${e}`});
     }
   }
   return res.status(400);
