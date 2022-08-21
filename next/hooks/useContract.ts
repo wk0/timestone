@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 
 import Contract from "../public/Timestone.json"
 
-const contractAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
+const contractAddress = "0x6D6B2f5D449c3dE37F3D2E939beec47A6aF6Ae0D";
 
 export const useTokenURI = (tokenId: BigNumber) => {
   const [tokenURI, setTokenURI] = useState<string | null>(null);
@@ -29,14 +29,17 @@ export const useTokenURI = (tokenId: BigNumber) => {
 
 const abiCoder = new ethers.utils.AbiCoder();
 
-export const useMint = (mintToAddress: string, cid: string) => {
+export const useMint = (mintToAddress: string | undefined, cid: string | null) => {
   const [mintError, setMintError ] = useState<string | null>(null);
   const [tokenId, setTokenId] = useState<BigNumber | null>(null);
 
-  const { config, error } = usePrepareContractWrite({
+  console.log(mintToAddress, cid);
+
+  const { config, error: prepareError } = usePrepareContractWrite({
     addressOrName: contractAddress,
     contractInterface: Contract.abi,
     functionName: "mintTo",
+    chainId: 80001,
     args: [mintToAddress, cid],
     overrides: {
       value: ethers.utils.parseEther('0.0001'),
@@ -48,12 +51,17 @@ export const useMint = (mintToAddress: string, cid: string) => {
       setMintError(error.message)
     }
     if (data) {
+      console.log('data', data)
       data.wait().then(receipt => {
-        const tokenIdStr = abiCoder.decode(["uint256"], receipt.logs[0].topics[3]).toString()
+        console.log('receipt', receipt)
+        const tokenIdStr = abiCoder.decode(["uint256"], receipt.logs[1].topics[3]).toString()
         setTokenId(BigNumber.from(tokenIdStr));
       })
     }
   }})
 
-  return { error, mintError, write, tokenId };
+  //console.log('prepare error', prepareError);
+  //console.log('mintError', mintError);
+
+  return { prepareError, mintError, write, tokenId };
 }
