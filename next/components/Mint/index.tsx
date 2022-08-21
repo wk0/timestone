@@ -21,6 +21,8 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CheckIcon from "@mui/icons-material/Check";
 import getCroppedImg from "./CropImage";
 import { ConnectKitButton } from "connectkit";
+import { useMint } from "../../hooks/useContract";
+import { useRouter } from "next/router";
 
 const steps = [
   {
@@ -46,6 +48,25 @@ const prepopulatedTags = [
   },
 ];
 
+function dataURItoBlob(dataURI: string) {
+  // convert base64/URLEncoded data component to raw binary data held in a string
+  var byteString;
+  if (dataURI.split(",")[0].indexOf("base64") >= 0)
+    byteString = atob(dataURI.split(",")[1]);
+  else byteString = unescape(dataURI.split(",")[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+
+  // write the bytes of the string to a typed array
+  var ia = new Uint8Array(byteString.length);
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ia], { type: mimeString });
+}
+
 interface MintProps {
   urlInput: string;
   isSnapshotting: boolean;
@@ -60,6 +81,28 @@ interface Snapshot {
 
 const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
   const { address, isConnecting, isDisconnected } = useAccount();
+
+  const router = useRouter();
+
+  const [cid, setCid] = useState<string | null>(null);
+  const [triggeredMint, setTriggeredMint] = useState(false);
+
+  const { write, tokenId } = useMint(address, cid);
+
+  useEffect(() => {
+    if (cid && address && !triggeredMint && write) {
+      write();
+      setTriggeredMint(true);
+    }
+  }, [cid, write, address, triggeredMint]);
+
+  useEffect(() => {
+    if (tokenId) {
+      console.log("minted tokenId", tokenId);
+      console.log("tokenId", tokenId.toString());
+      router.push(`/timestone/${tokenId.toString()}`);
+    }
+  }, [tokenId]);
 
   // Dialog State
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -94,11 +137,11 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
   const triggerMint = () => {
     const formData = new FormData();
 
-    const imageFile = new File([croppedImgData], "crop.png", {
-      type: "image/png",
-    });
+    console.log("croppedImgData", croppedImgData);
+    const blob = dataURItoBlob(croppedImgData);
 
-    formData.append("file", imageFile);
+    formData.append("file", blob, "crop.png");
+    z;
     formData.append("name", "Test Name");
     formData.append("description", "Test Description");
 
@@ -110,6 +153,8 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        const _cid = data.metadata.ipnft as string;
+        setCid(_cid);
       })
       .catch((error) => {
         console.error("Error:", error);
