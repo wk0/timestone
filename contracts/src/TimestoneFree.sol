@@ -3,7 +3,6 @@ pragma solidity 0.8.16;
 
 import "solmate/tokens/ERC721.sol";
 import "openzeppelin-contracts/contracts/utils/Strings.sol";
-import "openzeppelin-contracts/contracts/access/Ownable.sol";
 
 error MintPriceNotPaid();
 // error MaxSupply();
@@ -11,11 +10,9 @@ error NonExistentTokenURI();
 error WithdrawTransfer();
 error IpfsURINot59();
 
-contract Timestone is ERC721, Ownable {
+contract TimestoneFree is ERC721 {
     using Strings for uint256;
     uint256 public currentTokenId;
-
-    uint256 public constant MINT_PRICE = 0.0001 ether;
 
     mapping(uint256 => string) private tokenURIs;
 
@@ -25,12 +22,8 @@ contract Timestone is ERC721, Ownable {
 
     function mintTo(address recipient, string memory uri)
         public
-        payable
         returns (uint256)
     {
-        if (msg.value != MINT_PRICE) {
-            revert MintPriceNotPaid();
-        }
         uint256 newTokenId = ++currentTokenId;
         tokenURIs[newTokenId] = uri;
         _safeMint(recipient, newTokenId);
@@ -53,13 +46,5 @@ contract Timestone is ERC721, Ownable {
             revert NonExistentTokenURI();
         }
         return string.concat("ipfs://", cid);
-    }
-
-    function withdrawPayments(address payable payee) external onlyOwner {
-        uint256 balance = address(this).balance;
-        (bool transferTx, ) = payee.call{value: balance}("");
-        if (!transferTx) {
-            revert WithdrawTransfer();
-        }
     }
 }
