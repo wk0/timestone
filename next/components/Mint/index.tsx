@@ -169,7 +169,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
         setCid(_cid);
         setTimeout(() => {
           setShowAlternateLoading(true);
-        }, 3000);
+        }, 8000);
       })
       .catch((error) => {
         console.error("Error:", error);
