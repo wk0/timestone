@@ -15,7 +15,7 @@ const Divider = (props: any) => {
       > */}
 
           <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <Typography style={{marginTop: '180px', marginBottom: '10px'}} variant="h1">Recent Mints</Typography>
+            <Typography style={{marginTop: '140px', marginBottom: '10px'}} variant="h1">Recent Mints</Typography>
             <svg style={{ width: '1020px' }} width="1156" height="70" viewBox="0 0 1156 70" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect y="32" width="1156" height="1" fill="#101012"/>
               <ellipse cx="578" cy="35" rx="55" ry="35" fill="white"/>

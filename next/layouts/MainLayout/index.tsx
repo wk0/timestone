@@ -16,7 +16,6 @@ function MainLayout({ children }:MainLayoutProps) {
           zIndex: 5,
           flex: 1,
           display: 'flex',
-          pt: `68px`
         }}
       >
         <Box

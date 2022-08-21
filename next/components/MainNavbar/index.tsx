@@ -59,7 +59,7 @@ function MainNavbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AppBar elevation={0} style={{ border: '0' }}>
+    <AppBar elevation={0} style={{ border: '0' }} position="relative">
       <Toolbar sx={{ minHeight: 48, padding: "1rem" }}>
         {/* <Link href="/"> */}
           {/* {!isMobile ? (
