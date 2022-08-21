@@ -19,6 +19,7 @@
     "@mui/material": "5.9.1",
     "@mui/styles": "5.9.1",
     "@mui/system": "5.9.1",
+    "@rainbow-me/rainbowkit": "^0.5.0",
     "@types/multiparty": "^0.0.33",
     "@types/uuid": "^8.3.4",
     "connectkit": "^0.0.1",

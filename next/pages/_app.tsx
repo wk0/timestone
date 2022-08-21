@@ -1,10 +1,20 @@
 import type { AppProps } from "next/app";
 import type { ReactElement, ReactNode } from "react";
 import ThemeProvider from "../theme/ThemeProvider";
-import { WagmiConfig, chain } from "wagmi";
-import { ConnectKitProvider, getDefaultClient } from "connectkit";
-import { createClient, configureChains, defaultChains } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  lightTheme
+} from '@rainbow-me/rainbowkit';
+import {
+  chain,
+  configureChains,
+  createClient,
+  WagmiConfig,
+} from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../createEmotionCache";
 import type { NextPage } from "next";
@@ -23,34 +33,21 @@ const { chains, provider, webSocketProvider } = configureChains(
     chain.polygonMumbai,
     // chain.polygon
   ],
-  [publicProvider()]
+  [
+    alchemyProvider({ apiKey: process.env.ALCHEMY_KEY }),
+    publicProvider()
+  ]
 );
+
+const { connectors } = getDefaultWallets({
+  appName: 'Timestone NFT',
+  chains
+});
 
 // Set up client
 const client = createClient({
   autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: "wagmi",
-      },
-    }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        qrcode: true,
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: "Injected",
-        shimDisconnect: true,
-      },
-    }),
-  ],
+  connectors,
   provider,
   webSocketProvider,
 });
@@ -74,24 +71,22 @@ function MyApp(props: MyAppProps) {
 
   return (
     <WagmiConfig client={client}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider>
-          <ConnectKitProvider
-            mode="light"
-            theme="minimal"
-            customTheme={{
-              "--ck-connectbutton-background": "#28ED9E",
-              "--ck-connectbutton-color": "#000",
-              "--ck-font-family": "Courier Prime",
-            }}
-            options={{
-              embedGoogleFonts: true,
-            }}
-          >
+      <RainbowKitProvider
+        theme={lightTheme({
+          accentColor: '#28ED9E',
+          accentColorForeground: 'white',
+          borderRadius: 'none',
+          fontStack: 'rounded',
+          overlayBlur: 'small',
+        })}
+        chains={chains}
+      >
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider>
             {getLayout(<Component {...pageProps} />)}
-          </ConnectKitProvider>
-        </ThemeProvider>
-      </CacheProvider>
+          </ThemeProvider>
+        </CacheProvider>
+      </RainbowKitProvider>
     </WagmiConfig>
   );
 }
