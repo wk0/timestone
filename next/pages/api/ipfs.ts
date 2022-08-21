@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import formdata from '../middleware/formdata'
 import nextConnect from 'next-connect'
 import { NFTStorage, File, Blob } from 'nft.storage'
+import multiparty from 'multiparty'
 
 import * as fs from 'fs'
 
@@ -13,8 +13,20 @@ if (!NFT_STORAGE_API_KEY) {
 const client = new NFTStorage({ token: NFT_STORAGE_API_KEY })
 
 
+const middleware = nextConnect()
+
+middleware.use(async (req: any, res: NextApiResponse, next: any) => {
+  const form = new multiparty.Form()
+  await form.parse(req, function (err, fields, files) {
+    req.body = fields
+    req.files = files
+    next()
+  })
+})
+
+
 const handler = nextConnect()
-handler.use(formdata)
+handler.use(middleware)
 
 
 async function handleNFTStorage(image: Buffer, filename: string, contentType: string, name: string, description: string) {
@@ -27,8 +39,6 @@ async function handleNFTStorage(image: Buffer, filename: string, contentType: st
   return metadata;
 }
  
-
-
 
 handler.post(async (req: any, res: NextApiResponse) => {
   console.log(req.body)
