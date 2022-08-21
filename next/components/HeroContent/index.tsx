@@ -43,7 +43,7 @@ const HeroContent = (props: any) => {
               </Box>
             )} */}
             <Box display="flex" sx={{ textAlign: "left" }}>
-              <svg style={{ width: '450px', marginRight: '20px', marginRight: '20px', marginTop: '67px', marginBottom: '0px' }} width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg style={{ width: '450px', marginRight: '20px', marginTop: '67px', marginBottom: '0px' }} width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="logo">
                 <g id="circle" filter="url(#filter0_d_41_1611)">
                       <circle cx="144" cy="141" r="128" fill="white" />
