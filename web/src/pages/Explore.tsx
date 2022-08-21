@@ -45,7 +45,7 @@ const Explore = () => {
           flexDirection: 'column',
           marginTop: (isMobile) ? '1.5rem' : 0,
           px: {
-            md: '125px !important',
+            md: '105px !important',
             xs: 4
           },
         }}

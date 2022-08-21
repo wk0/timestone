@@ -69,12 +69,12 @@ const HeroContent = (props: any) => {
                   </defs>
                 </svg>
 
-                <Box style={{ marginLeft: '0 !important' }} sx={{ mx: 20, mt: 2 }}>
+                <Box style={{ marginLeft: '0 !important' }} sx={{ mx: 20, mt: 3.5 }}>
                   <Typography style={{ fontSize: "180px", height: '220px', textTransform: 'uppercase', fontFamily: 'Bebas Neue' }}
                     align="left"
                     display="flex"
                     color="textPrimary"
-                    sx={{ fontSize: "2.7rem" }}
+                    sx={{ fontSize: "2.5rem" }}
                   >
                     TimeStone
                   </Typography>
@@ -83,7 +83,7 @@ const HeroContent = (props: any) => {
                     align="left"
                     color="textPrimary"
                     variant="h1"
-                    sx={{ fontSize: "2.7rem" }}
+                    sx={{ fontSize: "2.5rem" }}
                   >
                     Archive Web Pages on the Blockchain and Store them as NFTs.
                   </Typography>
