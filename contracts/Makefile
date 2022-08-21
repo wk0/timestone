@@ -30,7 +30,7 @@ anvil :; anvil -m 'test test test test test test test test test test test junk'
 
 # use the "@" to hide the command from your shell 
 deploy-rinkeby :; @forge create src/${contract}.sol:${contract}  --rpc-url ${RINKEBY_RPC_URL} --private-key ${PRIVATE_KEY} --verify --etherscan-api-key ${ETHERSCAN_KEY}
-deploy-mumbai  :; @forge create src/${contract}.sol:${contract}  --rpc-url ${MUMBAI_RPC_URL} --private-key ${PRIVATE_KEY} --verify --etherscan-api-key ${ETHERSCAN_KEY}
+deploy-mumbai  :; @forge create src/${contract}.sol:${contract}  --rpc-url ${MUMBAI_RPC_URL} --private-key ${PRIVATE_KEY} --verify --etherscan-api-key ${POLYGONSCAN_KEY}
 
 # This is the private key of account from the mnemonic from the "make anvil" command
 deploy-anvil :; @forge create src/${contract}.sol:${contract} --rpc-url http://localhost:8545  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
