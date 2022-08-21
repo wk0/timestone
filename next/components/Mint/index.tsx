@@ -369,17 +369,18 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
     setCrop({ x: 0, y: mediaSize.height / 2 });
     const { current } = divRef;
     console.log(current);
+    const currentThing = current as any;
     //@ts-ignore
     setDimensions({
-      width: current?.containerRect?.width,
-      height: current?.containerRect?.height,
+      width: currentThing?.containerRect?.width,
+      height: currentThing?.containerRect?.height,
     });
     //@ts-ignore
     setImageDimensions({
-      width: current?.mediaSize?.width,
-      height: current?.mediaSize?.height,
-      actualWidth: current?.mediaSize?.naturalWidth,
-      actualHeight: current?.mediaSize?.naturalHeight,
+      width: currentThing?.mediaSize?.width,
+      height: currentThing?.mediaSize?.height,
+      //actualWidth: currentThing?.mediaSize?.naturalWidth,
+      //actualHeight: currentThing?.mediaSize?.naturalHeight,
     });
     setIsLoaded(true);
   };
