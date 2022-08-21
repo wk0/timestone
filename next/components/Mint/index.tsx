@@ -39,11 +39,17 @@ const prepopulatedTags = [
     tag: "twitter",
   },
   {
-    tag: "news",
+    tag: "headlines",
   },
   {
     tag: "memes",
   },
+  {
+    tag: "cringe",
+  },
+  {
+    tag: "looksrare",
+  }
 ];
 
 interface MintProps {
@@ -137,6 +143,20 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                 <Box>
                   <Autocomplete
                     multiple
+                    id="tags-outlined"
+                    options={prepopulatedTags}
+                    getOptionLabel={(tagData: any) => tagData.tag}
+                    defaultValue={[{ tag: "twitter" }]}
+                    filterSelectedOptions
+                    renderInput={(params:any) => (
+                      <TextField
+                        {...params}
+                        placeholder="Add Tags"
+                      />
+                    )}
+                  />
+                  {/* <Autocomplete
+                    multiple
                     id="tags-standard"
                     options={prepopulatedTags}
                     getOptionLabel={(tagData: any) => tagData.tag}
@@ -148,7 +168,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                         placeholder=" Add Tag"
                       />
                     )}
-                  />
+                  /> */}
                 </Box>
               </Grid>
             </Grid>
@@ -167,7 +187,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                 <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                   <Box>
                     <ConnectKitButton />
-                  </Box> 
+                  </Box>
                   {address ? (
                     <Box>
                       <Typography variant="subtitle1" sx={{

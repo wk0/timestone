@@ -444,6 +444,18 @@ export const CustomTheme = createTheme({
         }
       }
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          border: "1px solid #101012",
+          "&:hover": { borderRadius: 0, border: "1px solid #101012" },
+          "&:disabled": { borderRadius: 0, border: "1px solid #101012" },
+          "&.Mui-focused": { borderRadius: 0, border: "1px solid #101012" },
+          "&.MuiOutlinedInput-notchedOutline": { borderRadius: 0, border: "1px solid #101012" },
+        },
+      },
+    },
     MuiListSubheader: {
       styleOverrides: {
         colorPrimary: {
