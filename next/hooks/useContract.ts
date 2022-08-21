@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 
 import Contract from "../public/Timestone.json"
 
-const contractAddress = "";
+const contractAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
 
 export const useTokenURI = (tokenId: BigNumber) => {
   const [tokenURI, setTokenURI] = useState<string | null>(null);
