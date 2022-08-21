@@ -116,7 +116,7 @@ function MainNavbar() {
                         }),
                       }}
                       style={{
-                        fontSize: "1rem",
+                        fontSize: "1.1rem",
                         transition: "all 0.1s ease-in-out",
                       }}
                     >

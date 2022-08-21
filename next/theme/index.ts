@@ -629,12 +629,17 @@ export const CustomTheme = createTheme({
         },
         textSizeLarge: {
           padding: '12px 16px'
+        },
+        contained: {
+          '&:hover': {
+            outline: '1px solid black'
+          }
         }
       }
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: false
+        disableRipple: true
       },
       styleOverrides: {
         root: {
@@ -817,6 +822,7 @@ export const CustomTheme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'capitalize',
+          fontSize: '1.1rem'
         }
       }
     },
@@ -1026,15 +1032,26 @@ export const CustomTheme = createTheme({
     MuiStepIcon: {
       styleOverrides: {
         root: {
+          color: 'lightgrey',
           '&.MuiStepIcon-completed': {
             color: colors.success.main
           }
+        },
+        text: {
+          fontSize: '16px'
+        }
+      }
+    },
+    MuiStepLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: '1.1rem!important'
         }
       }
     },
   },
   shape: {
-    borderRadius: 10
+    borderRadius: 0
   },
   typography: {
     fontFamily:
@@ -1055,40 +1072,40 @@ export const CustomTheme = createTheme({
     },
     h4: {
       fontWeight: 700,
-      fontSize: 16
+      fontSize: 22
     },
     h5: {
       fontWeight: 700,
-      fontSize: 14
+      fontSize: 20
     },
     h6: {
-      fontSize: 15
+      fontSize: 18
     },
     body1: {
-      fontSize: 14
+      fontSize: 16
     },
     body2: {
-      fontSize: 14
+      fontSize: 16
     },
     button: {
       fontWeight: 600
     },
     caption: {
-      fontSize: 13,
+      fontSize: 16,
       textTransform: 'uppercase',
       color: colors.alpha.black[50]
     },
     subtitle1: {
-      fontSize: 14,
+      fontSize: 16,
       color: colors.alpha.black[70]
     },
     subtitle2: {
       fontWeight: 400,
-      fontSize: 15,
+      fontSize: 16,
       color: colors.alpha.black[70]
     },
     overline: {
-      fontSize: 13,
+      fontSize: 16,
       fontWeight: 700,
       textTransform: 'uppercase'
     }

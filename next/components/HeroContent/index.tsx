@@ -17,7 +17,7 @@ const HeroContent = (props: any) => {
     <Box
       sx={{
         backgroundColor: "background.paper",
-        pt: 4,
+        pt: 0,
       }}
       {...props}
     >
@@ -35,7 +35,7 @@ const HeroContent = (props: any) => {
       >
         <Grid container>
 
-        <Box style={{ paddingTop: "1.3rem", paddingBottom: "3rem" }}>
+        <Box style={{ paddingTop: "0rem", paddingBottom: "3rem" }}>
           <Grid container>
             {/* {!isMobile && (
               <Box style={{ marginRight: '2.2rem', marginTop: '-7px', marginBottom: '1rem' }} sx={{ display: { xs: 'none', md: 'block' } }}>

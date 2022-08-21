@@ -81,22 +81,37 @@ const InputBox = ({ prepopulate }: any) => {
           <LoadingButton
             disabled={!urlInput}
             loading={isSnapshotting}
-            variant="text"
+            variant="contained"
             onClick={triggerSnapshot}
-            style={{ marginLeft: '1.1rem', borderRadius: 0, width: '200px', fontSize: '30px',  fontWeight: '500', color: '#101012', backgroundColor: '#28ED9E' }}
-          > Start
+            sx={{ 
+              marginLeft: '1.1rem', 
+              borderRadius: 0, 
+              width: '200px', 
+              fontSize: '30px', 
+              fontWeight: '500', 
+              color: '#101012', 
+              backgroundColor: '#28ED9E',
+              '&:hover': {
+                outline: '1px solid black',
+                backgroundColor: '#28ED9E'
+              }
+            }}
+          > 
+            Start
             {/* <FilterTiltShiftIcon style={{ fontSize: '0' }} /> */}
           </LoadingButton>
         </Grid>
-        <Box style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-          <Typography style={{ fontSize: '22px',  color: '#101012', marginTop: '20px'}}
-            color="textSecondary"
-            variant="body1"
-            sx={{fontFamily: 'Cardo', fontSize: '1.3rem' }}
-          >
-            (Update the website’s URL to get started)
-          </Typography>
-        </Box>
+        {!urlInput && (
+          <Box style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <Typography style={{ fontSize: '22px', color: '#101012', marginTop: '20px' }}
+              color="textSecondary"
+              variant="body1"
+              sx={{ fontFamily: 'Cardo', fontSize: '1.3rem' }}
+            >
+              (Enter the URL of the website to capture)
+            </Typography>
+          </Box>
+        )}
       </Container>
       {showMint && (
         <Mint urlInput={urlInput} isSnapshotting={isSnapshotting} />

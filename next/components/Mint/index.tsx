@@ -178,9 +178,9 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
         return (
           <>
             <Grid container direction="column" alignItems="center" justifyContent="center" sx={{ mt: 3, mb: 6 }}>
-              <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 3 }}>
-                <Typography sx={{ fontSize: '18px' }}>
-                  Archive this snapshot to your digital wallet collection.
+              <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 4 }}>
+                <Typography sx={{ fontSize: '22px' }}>
+                  Add this snapshot to your digital wallet collection.
                 </Typography>
               </Grid>
               <Grid item>
@@ -208,7 +208,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                         flexWrap: 'wrap',
                         mt: 1
                       }}>
-                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px' }} />
+                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px', opacity: 0.58 }} />
                         Secure wallet connection
                       </Typography>
                     </Box>
