@@ -1,8 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import { ConnectButton } from "../ConnectButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ConnectKitButton } from "connectkit";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import {
   AppBar,
@@ -60,7 +59,7 @@ function MainNavbar() {
 
   return (
     <AppBar elevation={0} style={{ border: '0' }} position="relative">
-      <Toolbar sx={{ minHeight: 48, padding: "1rem" }}>
+      <Toolbar sx={{ minHeight: 54, padding: "1rem" }}>
         {/* <Link href="/"> */}
           {/* {!isMobile ? (
             <img
@@ -127,8 +126,8 @@ function MainNavbar() {
               )}
             </Box>
           ))}
-        <Box>
-          <ConnectKitButton />
+        <Box sx={{ marginBottom: '4px' }}>
+          <ConnectButton />
         </Box>
       </Toolbar>
     </AppBar>

@@ -21,7 +21,7 @@ import LegacyRef from "react-easy-crop";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CheckIcon from "@mui/icons-material/Check";
 import getCroppedImg from "./CropImage";
-import { ConnectKitButton } from "connectkit";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useMint } from "../../hooks/useContract";
 import { useRouter } from "next/router";
 
@@ -291,7 +291,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
                   }}
                 >
                   <Box>
-                    <ConnectKitButton />
+                    <ConnectButton />
                   </Box>
                   {address ? (
                     <Box>
