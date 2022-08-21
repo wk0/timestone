@@ -12,7 +12,7 @@ const ExploreGrid = (props: any) => {
           justifyContent: "center",
           minHeight: "100%",
           width: "100%",
-          marginTop: "1.5rem",
+          marginTop: "0px",
         }}
       >
         <Grid container spacing={3}>

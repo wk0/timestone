@@ -18,16 +18,28 @@ import ExploreGrid from "../components/ExploreGrid";
 
 const timestones = [
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://nytimes.com",
+    image_url: "/bitcoin.png",
+    capture_url: "https://bitcoin.org",
   },
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://google.com",
+    image_url: "/tesla.png",
+    capture_url: "https://twitter.com/elon-musk",
   },
   {
-    image_url: "/demo_snapshot.png",
-    capture_url: "https://twitter.com",
+    image_url: "/snopes.png",
+    capture_url: "https://snopes.news",
+  },
+  {
+    image_url: "/eth-bogota.png",
+    capture_url: "https://ethbogota.com/",
+  },
+  {
+    image_url: "/wsb.png",
+    capture_url: "https://reddit.com/r/wsb",
+  },
+  {
+    image_url: "/mexico.png",
+    capture_url: "https://weathe.com",
   },
 ];
 const Explore: NextPage = () => {
@@ -78,15 +90,15 @@ const Explore: NextPage = () => {
               sx={{ mt: isMobile ? 2 : 0 }}
               alignItems="center"
             >
-              <Grid item>
+              {/* <Grid item>
                 <Typography
                   variant="h5"
                   style={{ lineHeight: "48px", fontSize: "28px" }}
                 >
                   All Timestones (36)
                 </Typography>
-              </Grid>
-              <Grid item>
+              </Grid> */}
+              {/* <Grid item>
                 <Grid
                   container
                   justifyContent="flex-start"
@@ -139,7 +151,7 @@ const Explore: NextPage = () => {
                     </Tabs>
                   </Grid>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
             {/* <Grid container justifyContent="flex-end" sx={{ my: 2 }}>
             <FormControlLabel control={<Switch defaultChecked />} label="Show Explicit" />

@@ -85,7 +85,7 @@ const HeroContent = (props: any) => {
                     variant="h1"
                     sx={{ fontSize: "2.7rem" }}
                   >
-                    Archive and Collect Web Pages on the Blockchain as NFTs.
+                    Archive Web Pages on the Blockchain and Store them as NFTs.
                   </Typography>
                 </Box>
               </Box>

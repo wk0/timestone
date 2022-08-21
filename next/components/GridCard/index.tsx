@@ -33,7 +33,7 @@ const GridCard = (props: any) => {
                 }}
               >
                 <picture>
-                  <img src={stone.image_url} alt="media" style={{ height: '240px', width: '100%' }} />
+                  <img src={stone.image_url} alt="media" style={{ height: '100%', width: '100%' }} />
                 </picture>
               </CardMedia>
               <CardContent
