@@ -19,7 +19,7 @@ import "../styles/globals.css";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     // chain.mainnet,
-    chain.foundry,
+    // chain.foundry,
     chain.polygonMumbai,
     // chain.polygon
   ],

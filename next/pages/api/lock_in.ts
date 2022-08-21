@@ -31,11 +31,13 @@ handler.use(middleware)
 
 async function handleNFTStorage(image: Buffer, filename: string, contentType: string, name: string, description: string) {
   const imageFile = new File([ image ], filename, { type: contentType })
+  console.log(imageFile)
   const metadata = await client.store({
     name,
     description,
     image: imageFile
   });
+  console.log(metadata)
   return metadata;
 }
  
@@ -48,10 +50,13 @@ handler.post(async (req: any, res: NextApiResponse) => {
 
   const name = body.name[0];
   const description = body.description[0];
+
   console.log(name)
   console.log(description)
+  console.log('req files', req.files)
 
   const file = req.files.file[0]
+  console.log('file', file)
   fs.readFile(file.path, async (err, data) => {
 
     const metadata = await handleNFTStorage(
