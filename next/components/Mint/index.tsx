@@ -92,7 +92,28 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
 
   // Handle Minting of NFT
   const triggerMint = () => {
+    const formData = new FormData();
+
+    const imageFile = new File([croppedImgData], "crop.png", {
+      type: "image/png",
+    });
+
+    formData.append("file", imageFile);
+    formData.append("name", "Test Name");
+    formData.append("description", "Test Description");
+
     // Trigger Contract Interaction
+    fetch("/api/lock_in", {
+      method: "POST", // or 'PUT'
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const handleBack = () => {
@@ -328,7 +349,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
   // On Crop Complete
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  const [croppedImgData, setCroppedImgData] = useState(null);
+  const [croppedImgData, setCroppedImgData] = useState<any | null>(null);
   const cropImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(
