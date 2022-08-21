@@ -19,6 +19,7 @@
     "@mui/material": "5.9.1",
     "@mui/styles": "5.9.1",
     "@mui/system": "5.9.1",
+    "connectkit": "^0.0.1",
     "ethers": "^5.7.0",
     "history": "^5.0.0",
     "lodash": "^4.17.21",

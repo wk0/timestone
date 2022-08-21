@@ -12,7 +12,7 @@ const CustomizedInputBase = (props: any) => {
   return (
     <Paper
       component="form"
-      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: 500, height: 75, borderRadius: '16px', fontSize: '30px!important' }}
+      sx={{ p: '0px 16px', display: 'flex', alignItems: 'center', width: 500, height: 75, borderRadius: 0, fontSize: '30px!important' }}
     >
       <InputBase
         sx={{ ml: 2, flex: 1, mt: '0px' }}
@@ -83,7 +83,7 @@ const InputBox = ({ prepopulate }: any) => {
             loading={isSnapshotting}
             variant="text"
             onClick={triggerSnapshot}
-            style={{ marginLeft: '1.1rem', borderRadius: '16px', paddingLeft: '8px', paddingRight: '8px', width: '75px' }}
+            style={{ marginLeft: '1.1rem', borderRadius: 0, paddingLeft: '8px', paddingRight: '8px', width: '75px' }}
           >
             <FilterTiltShiftIcon style={{ fontSize: '38px' }} />
           </LoadingButton>

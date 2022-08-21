@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import type { ReactElement, ReactNode } from 'react';
 import ThemeProvider from "../theme/ThemeProvider";
 import { WagmiConfig } from "wagmi";
+import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { createClient, configureChains, defaultChains } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { CacheProvider, EmotionCache } from '@emotion/react';
@@ -70,7 +71,20 @@ function MyApp(props: MyAppProps) {
     <WagmiConfig client={client}>
       <CacheProvider value={emotionCache}>
         <ThemeProvider>
-          {getLayout(<Component {...pageProps} />)}
+          <ConnectKitProvider
+            mode="light"
+            theme="minimal"
+            customTheme={{
+              "--ck-connectbutton-background": "#28ED9E",
+              "--ck-connectbutton-color": "#000",
+              "--ck-font-family": "Courier Prime"
+            }}
+            options={{
+              embedGoogleFonts: true,
+            }}
+          >
+            {getLayout(<Component {...pageProps} />)}
+          </ConnectKitProvider>
         </ThemeProvider>
       </CacheProvider>
     </WagmiConfig>

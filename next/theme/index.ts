@@ -2,13 +2,13 @@ import { alpha, createTheme, lighten, darken } from '@mui/material';
 import '@mui/lab/themeAugmentation';
 
 const themeColors = {
-  primary: '#292929',
-  secondary: '#100C08',
+  primary: '#28ED9E',
+  secondary: '#292929',
   success: '#57CA22',
   warning: '#FFA319',
   error: '#FF1943',
   info: '#33C2FF',
-  black: '#292929',
+  black: '#000',
   white: '#ffffff',
   primaryAlt: '#000C57'
 };
@@ -221,10 +221,10 @@ export const CustomTheme = createTheme({
   },
   general: {
     reactFrameworkColor: '#00D8FF',
-    borderRadiusSm: '6px',
-    borderRadius: '10px',
-    borderRadiusLg: '12px',
-    borderRadiusXl: '16px'
+    borderRadiusSm: '0px',
+    borderRadius: '0px',
+    borderRadiusLg: '0px',
+    borderRadiusXl: '0px'
   },
   sidebar: {
     background: colors.layout.sidebar.background,
@@ -391,7 +391,7 @@ export const CustomTheme = createTheme({
         code: {
           background: colors.info.lighter,
           color: colors.info.dark,
-          borderRadius: 4,
+          borderRadius: 0,
           padding: 4
         },
         '@keyframes pulse': {
@@ -569,10 +569,11 @@ export const CustomTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          fontWeight: 'bold',
-          textTransform: 'none',
+          borderRadius: 0,
+          textTransform: 'uppercase',
           paddingLeft: 16,
           paddingRight: 16,
+          fontFamily: 'Courier Prime',
 
           '.MuiSvgIcon-root': {
             transition: 'all .2s'
@@ -627,7 +628,8 @@ export const CustomTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 6
+          borderRadius: 0,
+          textTransform: 'capitalize',
         }
       }
     },
@@ -917,6 +919,14 @@ export const CustomTheme = createTheme({
         }
       }
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Courier Prime',
+          fontWeight: 'regular'
+        }
+      }
+    },
     MuiTimelineItem: {
       styleOverrides: {
         root: {
@@ -1018,7 +1028,7 @@ export const CustomTheme = createTheme({
   },
   typography: {
     fontFamily:
-      '"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+      '"Cardo", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
     h1: {
       fontWeight: 700,
       fontSize: 35

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { ConnectButton } from "../ConnectButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ConnectKitButton } from "connectkit";
 
 import {
   AppBar,
@@ -82,8 +83,11 @@ function MainNavbar() {
               }}
             />
           )} */}
-          <Typography variant="h2" sx={{ color: 'black', fontSize: '16px' }}>TIMESTONE LOGO</Typography>
+          <Typography variant="h2" sx={{ color: 'black', fontSize: '24px', fontFamily: 'Bebas Neue' }}>TIMESTONE</Typography>
         </Link>
+        <Typography sx={{ ml: 4 }}>
+          Made with ❤️ at ETHMexico (🇲🇽)
+        </Typography>
         <Box sx={{ flexGrow: 1 }} />
         {navigationSections &&
           navigationSections.map((navigationSection) => (
@@ -122,7 +126,7 @@ function MainNavbar() {
             </Box>
           ))}
         <Box>
-          <ConnectButton />
+          <ConnectKitButton />
         </Box>
       </Toolbar>
     </AppBar>
