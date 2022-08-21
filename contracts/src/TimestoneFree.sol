@@ -16,9 +16,7 @@ contract TimestoneFree is ERC721 {
 
     mapping(uint256 => string) private tokenURIs;
 
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol)
-    {}
+    constructor() ERC721("TimestoneF", "TMSTNF") {}
 
     function mintTo(address recipient, string memory uri)
         public
@@ -45,6 +43,6 @@ contract TimestoneFree is ERC721 {
         if (bytes(cid).length == 0) {
             revert NonExistentTokenURI();
         }
-        return string.concat("ipfs://", cid);
+        return string.concat("ipfs://", cid, "/metadata.json");
     }
 }

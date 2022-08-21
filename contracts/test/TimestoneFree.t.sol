@@ -11,7 +11,7 @@ contract TimestoneFreeTest is Test {
 
     function setUp() public {
         // Deploy NFT contract
-        nft = new TimestoneFree("Timestone", "TMSTN");
+        nft = new TimestoneFree();
     }
 
     function testNoMintPricePaid() public {
