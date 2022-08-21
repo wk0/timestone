@@ -78,15 +78,15 @@ const Explore: NextPage = () => {
               sx={{ mt: isMobile ? 2 : 0 }}
               alignItems="center"
             >
-              <Grid item>
+              {/* <Grid item>
                 <Typography
                   variant="h5"
                   style={{ lineHeight: "48px", fontSize: "28px" }}
                 >
                   All Timestones (36)
                 </Typography>
-              </Grid>
-              <Grid item>
+              </Grid> */}
+              {/* <Grid item>
                 <Grid
                   container
                   justifyContent="flex-start"
@@ -139,7 +139,7 @@ const Explore: NextPage = () => {
                     </Tabs>
                   </Grid>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
             {/* <Grid container justifyContent="flex-end" sx={{ my: 2 }}>
             <FormControlLabel control={<Switch defaultChecked />} label="Show Explicit" />
