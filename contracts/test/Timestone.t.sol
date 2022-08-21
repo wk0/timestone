@@ -11,7 +11,7 @@ contract TimestoneTest is Test {
 
     function setUp() public {
         // Deploy NFT contract
-        nft = new Timestone("Timestone", "TMSTN");
+        nft = new Timestone();
     }
 
     function testFailNoMintPricePaid() public {
