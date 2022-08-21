@@ -58,14 +58,14 @@ export default async function handler(
         //}
       })
         .src(externalUrl, ['800x600'])
-        .dest(path.join(__dirname, '/snapshots'))
+        .dest(path.join('/tmp', '/snapshots'))
         .run();
 
 
       const slugified = filenamifyUrl(externalUrl);
       console.log(slugified);
       // const trimmedUrl = externalUrl.split('//www.')[1]
-      const outputPath = path.join(__dirname, '/snapshots', `${slugified}-800x600.png`);
+      const outputPath = path.join('/tmp', '/snapshots', `${slugified}-800x600.png`);
       console.log(outputPath)
       const uri = await datauri(outputPath);
       if (uri) {
