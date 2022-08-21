@@ -19,8 +19,10 @@
     "@mui/material": "5.9.1",
     "@mui/styles": "5.9.1",
     "@mui/system": "5.9.1",
-    "connectkit": "^0.0.1",
     "@types/multiparty": "^0.0.33",
+    "@types/uuid": "^8.3.4",
+    "connectkit": "^0.0.1",
+    "datauri": "^4.1.0",
     "ethers": "^5.7.0",
     "history": "^5.0.0",
     "lodash": "^4.17.21",
@@ -28,6 +30,7 @@
     "next": "12.2.5",
     "next-connect": "^0.13.0",
     "nft.storage": "^7.0.0",
+    "pageres": "^6.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-easy-crop": "^4.5.0",
@@ -35,6 +38,7 @@
     "react-router-dom": "6.0.0-beta.0",
     "styled-components": "^5.3.5",
     "swr": "^1.3.0",
+    "uuid": "^8.3.2",
     "wagmi": "^0.6.4"
   },
   "devDependencies": {
