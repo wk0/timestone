@@ -18,7 +18,7 @@ const Footer = (props: any) => {
           </g>
         </svg>
 
-        <Typography style={{marginTop: '0px', marginBottom: '2rem'}} variant="body">Created with ❤️ at ETHMEXICO🇲🇽2022, by @0x5e5e, @MarthaGravy, @wk0, and @mondo989 </Typography>
+        <Typography style={{marginTop: '0px', marginBottom: '2rem'}} variant="body1">Created with ❤️ at ETHMEXICO🇲🇽2022, by @0x5e5e, @MarthaGravy, @wk0, and @mondo989 </Typography>
 
       </Grid>
     </>
