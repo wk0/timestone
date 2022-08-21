@@ -1,11 +1,13 @@
 import type { AppProps } from "next/app";
 import type { ReactElement, ReactNode } from "react";
 import ThemeProvider from "../theme/ThemeProvider";
+import merge from 'lodash.merge';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultWallets,
   RainbowKitProvider,
-  lightTheme
+  lightTheme,
+  Theme
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -52,6 +54,27 @@ const client = createClient({
   webSocketProvider,
 });
 
+const myCustomTheme = merge(lightTheme(), {
+  colors: {
+    accentColor: '#28ED9E',
+    accentColorForeground: '#000',
+    connectButtonBackground: '#28ED9E',
+    connectButtonInnerBackground: '#28ED9E',
+    connectButtonText: '#000',
+    generalBorder: '#000',
+  },
+  radii: {
+    actionButton: 'none',
+    connectButton: 'none',
+    menuButton: 'none',
+    modal: 'none',
+    modalMobile: 'none',
+  },
+  fonts: {
+    body: 'Courier Prime',
+  },
+} as Theme);
+
 // Setup Emotion Cache for Material-UI
 const clientSideEmotionCache = createEmotionCache();
 
@@ -72,13 +95,7 @@ function MyApp(props: MyAppProps) {
   return (
     <WagmiConfig client={client}>
       <RainbowKitProvider
-        theme={lightTheme({
-          accentColor: '#28ED9E',
-          accentColorForeground: 'white',
-          borderRadius: 'none',
-          fontStack: 'rounded',
-          overlayBlur: 'small',
-        })}
+        theme={myCustomTheme}
         chains={chains}
       >
         <CacheProvider value={emotionCache}>

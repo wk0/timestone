@@ -28,6 +28,7 @@
     "filenamify-url": "^3.0.0",
     "history": "^5.0.0",
     "lodash": "^4.17.21",
+    "lodash.merge": "^4.6.2",
     "multiparty": "^4.2.3",
     "next": "12.2.5",
     "next-connect": "^0.13.0",
