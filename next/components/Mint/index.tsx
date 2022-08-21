@@ -9,6 +9,7 @@ import {
   StepLabel,
   Button,
   Autocomplete,
+  Grow,
   TextField,
   Stack,
   Grid,
@@ -104,9 +105,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
 
   useEffect(() => {
     if (tokenId) {
-      console.log("minted tokenId", tokenId);
-      console.log("tokenId", tokenId.toString());
-      router.push(`/timestone/${tokenId.toString()}`);
+      setMintSuccess(true);
     }
   }, [tokenId]);
 
@@ -139,6 +138,9 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
     }
   };
 
+  const [mintSuccess, setMintSuccess] = useState(false);
+  const [showAlternateLoading, setShowAlternateLoading] = useState(false);
+
   // Handle Minting of NFT
   const triggerMint = () => {
     const formData = new FormData();
@@ -146,9 +148,14 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
     console.log("croppedImgData", croppedImgData);
     const blob = dataURItoBlob(croppedImgData);
 
+    const now = new Date();
+    const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+    const dateLocal = new Date(now.getTime() - offsetMs);
+    const dateFormatted = dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+
     formData.append("file", blob, "crop.png");
-    formData.append("name", "Test Name");
-    formData.append("description", "Test Description");
+    formData.append("name", urlInput);
+    formData.append("description", `Captured on ${dateFormatted} by ${address} via timestone-official-1.`);
 
     // Trigger Contract Interaction
     fetch("/api/lock_in", {
@@ -160,6 +167,9 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
         console.log("Success:", data);
         const _cid = data.metadata.ipnft as string;
         setCid(_cid);
+        setTimeout(() => {
+          setShowAlternateLoading(true);
+        }, 8000);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -333,9 +343,12 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
               justifyContent="center"
               sx={{ my: 2 }}
             >
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="body1" sx={{ fontSize: '22px', mx: 8 }}>Your snapshot is locked in and ready to mint 🙌</Typography>
+              </Box>
               <Grid
                 item
-                sx={{ width: "100%", textAlign: "center", px: 36, my: 3 }}
+                sx={{ width: "100%", textAlign: "center", px: 36, mt: 3 }}
               >
                 {/* <div
                   style={{
@@ -349,7 +362,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
                 <img
                   src={croppedImgData || ""}
                   alt="preview"
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", outline: '1px solid black' }}
                 />
               </Grid>
               <Grid item></Grid>
@@ -458,6 +471,14 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
     }
   }, [snapshotURI, urlInput]);
 
+  const viewTimestoneClick = () => {
+    if (tokenId) {
+      router.push(`/timestone/${tokenId.toString()}`);
+    } else {
+      console.error("invalid token id");
+    }
+  }
+
   if (!urlInput && !isSnapshotting) {
     return null;
   }
@@ -533,32 +554,81 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
       </div>
       <Dialog
         fullWidth
-        maxWidth="md"
+        maxWidth="sm"
         open={dialogOpen}
         onClose={handleDialogClose}
+        sx={{
+          '& .MuiPaper-root': {
+            border: 'none!important',
+            boxShadow: 'none',
+          }
+        }}
       >
-        <Stack
-          spacing={4}
-          sx={{ width: "100%", my: 8 }}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box>
-            <img
-              src="/timestone_icon.png"
-              alt="timestone icon"
-              style={{ maxHeight: "64px" }}
-            />
-          </Box>
-          <Box>
-            <CircularProgress />
-          </Box>
-          <Box>
-            <Typography variant="h5" sx={{ fontSize: "20px" }}>
-              Your Timestone is minting...
-            </Typography>
-          </Box>
-        </Stack>
+        {mintSuccess === false ? (
+          <Stack
+            spacing={4}
+            sx={{ width: "100%", my: 8 }}
+            alignItems="center"
+            justifyContent="center"
+          >
+            {/* <Box>
+          <img
+            src="/timestone_icon.png"
+            alt="timestone icon"
+            style={{ maxHeight: "64px" }}
+          />
+        </Box> */}
+            <Box>
+              <CircularProgress size={60} />
+            </Box>
+            <Box>
+              <Typography variant="h5" sx={{ fontSize: "20px" }}>
+                {(!showAlternateLoading ? "Working up some ✨magic✨..." : "Hang tight... almost there 👀")}
+              </Typography>
+            </Box>
+          </Stack>
+        ) : (
+          <Grow in={mintSuccess}>
+            <Stack
+              spacing={0}
+              sx={{ width: "100%", my: 8 }}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Box>
+                <img
+                  src="/timestone_icon.png"
+                  alt="timestone icon"
+                  style={{ maxHeight: "64px" }}
+                />
+              </Box>
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="h5" sx={{ fontSize: "24px" }}>
+                  Congratulations!
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="subtitle1" sx={{ fontSize: "18px" }}>
+                  Your Timestone was successfully minted.
+                </Typography>
+              </Box>
+              <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={2}
+                sx={{ mt: 4 }}
+              >
+                <Button variant="contained" onClick={viewTimestoneClick}>
+                  View Timestone
+                </Button>
+                <Button variant="outlined">
+                  Open in Wallet
+                </Button>
+              </Stack>
+            </Stack>
+          </Grow>
+        )}
       </Dialog>
     </>
   );
