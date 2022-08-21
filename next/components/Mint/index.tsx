@@ -41,10 +41,16 @@ const prepopulatedTags = [
     tag: "twitter",
   },
   {
-    tag: "news",
+    tag: "headlines",
   },
   {
     tag: "memes",
+  },
+  {
+    tag: "cringe",
+  },
+  {
+    tag: "looksrare",
   },
 ];
 
@@ -180,12 +186,15 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
               justifyContent="center"
               spacing={3}
             >
-              <Grid item sx={{ width: "100%" }}>
-                <Box sx={{ paddingRight: 0, width: "100%", mt: 4, px: 36 }}>
+              <Grid item sx={{ width: "1050px" }}>
+                <Box
+                  style={{ paddingLeft: "0", paddingRight: "0" }}
+                  sx={{ paddingRight: 0, width: "100%", mt: 4, px: 36 }}
+                >
                   {snapshot && (
                     <Box
                       style={{
-                        outline: "3px solid #28ED9E",
+                        outline: "1px solid #010101",
                         position: "relative",
                         width: "100%",
                         paddingTop: "56.25%",
@@ -213,8 +222,19 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
                 </Box>
               </Grid>
               <Grid item sx={{ minWidth: 600 }}>
-                <Box>
+                <Box style={{ width: "1020px" }}>
                   <Autocomplete
+                    multiple
+                    id="tags-outlined"
+                    options={prepopulatedTags}
+                    getOptionLabel={(tagData: any) => tagData.tag}
+                    defaultValue={[{ tag: "twitter" }]}
+                    filterSelectedOptions
+                    renderInput={(params: any) => (
+                      <TextField {...params} placeholder="Add Tags" />
+                    )}
+                  />
+                  {/* <Autocomplete
                     multiple
                     id="tags-standard"
                     options={prepopulatedTags}
@@ -227,7 +247,7 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
                         placeholder=" Add Tag"
                       />
                     )}
-                  />
+                  /> */}
                 </Box>
               </Grid>
             </Grid>
@@ -245,10 +265,10 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
             >
               <Grid
                 item
-                sx={{ width: "100%", textAlign: "center", px: 36, my: 3 }}
+                sx={{ width: "100%", textAlign: "center", px: 36, my: 4 }}
               >
-                <Typography sx={{ fontSize: "18px" }}>
-                  Archive this snapshot to your digital wallet collection.
+                <Typography sx={{ fontSize: "22px" }}>
+                  Add this snapshot to your digital wallet collection.
                 </Typography>
               </Grid>
               <Grid item>
@@ -292,9 +312,9 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
                         }}
                       >
                         <VerifiedUserIcon
-                          sx={{ fontSize: "14px", mr: "3px" }}
+                          sx={{ fontSize: "14px", mr: "3px", opacity: 0.78 }}
                         />
-                        Secure wallet connection
+                        Secure Connection
                       </Typography>
                     </Box>
                   )}

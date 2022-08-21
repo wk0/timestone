@@ -8,7 +8,7 @@ const themeColors = {
   warning: '#FFA319',
   error: '#FF1943',
   info: '#33C2FF',
-  black: '#000',
+  black: '#101012',
   white: '#ffffff',
   primaryAlt: '#000C57'
 };
@@ -444,6 +444,18 @@ export const CustomTheme = createTheme({
         }
       }
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          border: "1px solid #101012",
+          "&:hover": { borderRadius: 0, border: "1px solid #101012" },
+          "&:disabled": { borderRadius: 0, border: "1px solid #101012" },
+          "&.Mui-focused": { borderRadius: 0, border: "1px solid #101012" },
+          "&.MuiOutlinedInput-notchedOutline": { borderRadius: 0, border: "1px solid #101012" },
+        },
+      },
+    },
     MuiListSubheader: {
       styleOverrides: {
         colorPrimary: {
@@ -571,8 +583,6 @@ export const CustomTheme = createTheme({
         root: {
           borderRadius: 0,
           textTransform: 'uppercase',
-          paddingLeft: 16,
-          paddingRight: 16,
           fontFamily: 'Courier Prime',
 
           '.MuiSvgIcon-root': {
@@ -619,12 +629,17 @@ export const CustomTheme = createTheme({
         },
         textSizeLarge: {
           padding: '12px 16px'
+        },
+        contained: {
+          '&:hover': {
+            outline: '1px solid black'
+          }
         }
       }
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: false
+        disableRipple: true
       },
       styleOverrides: {
         root: {
@@ -727,7 +742,7 @@ export const CustomTheme = createTheme({
           boxShadow: 'none'
         },
         elevation: {
-          boxShadow: colors.shadows.card
+         border: '1px solid black',
         },
         elevation2: {
           boxShadow: colors.shadows.cardSm
@@ -807,6 +822,7 @@ export const CustomTheme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'capitalize',
+          fontSize: '1.1rem'
         }
       }
     },
@@ -1016,15 +1032,26 @@ export const CustomTheme = createTheme({
     MuiStepIcon: {
       styleOverrides: {
         root: {
+          color: 'lightgrey',
           '&.MuiStepIcon-completed': {
             color: colors.success.main
           }
+        },
+        text: {
+          fontSize: '16px'
+        }
+      }
+    },
+    MuiStepLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: '1.1rem!important'
         }
       }
     },
   },
   shape: {
-    borderRadius: 10
+    borderRadius: 0
   },
   typography: {
     fontFamily:
@@ -1045,40 +1072,40 @@ export const CustomTheme = createTheme({
     },
     h4: {
       fontWeight: 700,
-      fontSize: 16
+      fontSize: 22
     },
     h5: {
       fontWeight: 700,
-      fontSize: 14
+      fontSize: 20
     },
     h6: {
-      fontSize: 15
+      fontSize: 18
     },
     body1: {
-      fontSize: 14
+      fontSize: 16
     },
     body2: {
-      fontSize: 14
+      fontSize: 16
     },
     button: {
       fontWeight: 600
     },
     caption: {
-      fontSize: 13,
+      fontSize: 16,
       textTransform: 'uppercase',
       color: colors.alpha.black[50]
     },
     subtitle1: {
-      fontSize: 14,
+      fontSize: 16,
       color: colors.alpha.black[70]
     },
     subtitle2: {
       fontWeight: 400,
-      fontSize: 15,
+      fontSize: 16,
       color: colors.alpha.black[70]
     },
     overline: {
-      fontSize: 13,
+      fontSize: 16,
       fontWeight: 700,
       textTransform: 'uppercase'
     }
