@@ -115,10 +115,10 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
         return (
           <>
             <Grid container direction="column" alignItems="center" justifyContent="center" spacing={3}>
-              <Grid item sx={{ width: '100%' }}>
-                <Box sx={{ paddingRight: 0, width: '100%', mt: 4, px: 36 }}>
+              <Grid item sx={{ width: '1050px' }}>
+                <Box style={{ paddingLeft: '0', paddingRight: '0'}} sx={{ paddingRight: 0, width: '100%', mt: 4, px: 36 }}>
                   {snapshot && (
-                    <Box style={{ outline: '3px solid #28ED9E', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
+                    <Box style={{ outline: '1px solid #010101', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
                       <Cropper
                         //@ts-ignore
                         ref={divRef}
@@ -140,7 +140,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                 </Box>
               </Grid>
               <Grid item sx={{ minWidth: 600 }}>
-                <Box>
+                <Box style={{ width: '1020px'}}>
                   <Autocomplete
                     multiple
                     id="tags-outlined"
@@ -208,8 +208,8 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                         flexWrap: 'wrap',
                         mt: 1
                       }}>
-                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px', opacity: 0.58 }} />
-                        Secure wallet connection
+                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px', opacity: 0.78 }} />
+                        Secure Connection
                       </Typography>
                     </Box>
                   )}
