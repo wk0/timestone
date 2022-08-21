@@ -14,10 +14,13 @@ import {
   Grid,
 } from "@mui/material";
 import { useState, useCallback, useEffect, useRef, createRef } from 'react';
+import { useAccount } from "wagmi";
 import Cropper from 'react-easy-crop';
 import LegacyRef from 'react-easy-crop';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import CheckIcon from '@mui/icons-material/Check';
 import getCroppedImg from './CropImage';
+import { ConnectKitButton } from "connectkit";
 
 const steps = [
   {
@@ -55,6 +58,8 @@ interface Snapshot {
 }
 
 const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
+
+  const { address, isConnecting, isDisconnected } = useAccount();
 
   // Dialog State
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -107,7 +112,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
               <Grid item sx={{ width: '100%' }}>
                 <Box sx={{ paddingRight: 0, width: '100%', mt: 4, px: 36 }}>
                   {snapshot && (
-                    <Box style={{ outline: '3px solid #2ECC71', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
+                    <Box style={{ outline: '3px solid #28ED9E', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
                       <Cropper
                         //@ts-ignore
                         ref={divRef}
@@ -155,23 +160,39 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
             <Grid container direction="column" alignItems="center" justifyContent="center" sx={{ mt: 3, mb: 6 }}>
               <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 3 }}>
                 <Typography sx={{ fontSize: '18px' }}>
-                  Let’s help you archive this snapshot to your digital wallet collection.
+                  Archive this snapshot to your digital wallet collection.
                 </Typography>
               </Grid>
               <Grid item>
-                <Box sx={{ textAlign: 'center' }}>
-                  <Button variant="contained">
-                    Connect Wallet
-                  </Button>
-                  <Typography variant="subtitle1" sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                    mt: 1
-                  }}>
-                    <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px' }} />
-                    Read-only wallet connection
-                  </Typography>
+                <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                  <Box>
+                    <ConnectKitButton />
+                  </Box> 
+                  {address ? (
+                    <Box>
+                      <Typography variant="subtitle1" sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        mt: 1
+                      }}>
+                        <CheckIcon sx={{ fontSize: '14px', mr: '3px', color: '#4BB543' }} />
+                        Successfully connected!
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <Box>
+                      <Typography variant="subtitle1" sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        mt: 1
+                      }}>
+                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px' }} />
+                        Secure wallet connection
+                      </Typography>
+                    </Box>
+                  )}
                 </Box>
               </Grid>
             </Grid>
@@ -336,6 +357,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                       <Button
                         variant="contained"
                         onClick={handleNext}
+                        disabled={(activeStep === 1 && !address)}
                         sx={{ mt: 1, mr: 1 }}
                       >
                         {activeStep === steps.length - 1 ? 'Mint as NFT' : 'Continue'}

@@ -37,7 +37,7 @@ const HeroContent = (props: any) => {
                 align="center"
                 color="textSecondary"
                 variant="body1"
-                sx={{ pt: 1, pb: 2, fontFamily: 'Plus Jakarta Sans', fontSize: '1.3rem' }}
+                sx={{ pt: 1, pb: 2, fontFamily: 'Cardo', fontSize: '1.3rem' }}
               >
                 Lorem ipsum dolor sit amet consectetur
               </Typography>

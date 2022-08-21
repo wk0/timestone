@@ -46,7 +46,7 @@ const GridCard = (props: any) => {
                   minHeight: '40px',
                 }}
               >
-                <div style={{ display: 'block', textAlign: 'left', textOverflow: 'ellipsis', wordWrap: 'break-word', overflow: 'hidden', maxHeight: '2.6em', lineHeight: '1.8em', fontSize: '14px', fontFamily: 'Plus Jakarta Sans' }}>
+                <div style={{ display: 'block', textAlign: 'left', textOverflow: 'ellipsis', wordWrap: 'break-word', overflow: 'hidden', maxHeight: '2.6em', lineHeight: '1.8em', fontSize: '14px', fontFamily: 'Cardo' }}>
                   {stone.capture_url}
                 </div>
               </CardContent>

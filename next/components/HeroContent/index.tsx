@@ -36,19 +36,7 @@ const HeroContent = (props: any) => {
         <Grid container>
           <Box style={{ paddingTop: "1.3rem", paddingBottom: "3rem" }}>
             <Box sx={{ textAlign: "center" }}>
-              <Typography
-                align="center"
-                color="textSecondary"
-                variant="body1"
-                sx={{
-                  pt: 1,
-                  pb: 2,
-                  fontFamily: "Plus Jakarta Sans",
-                  fontSize: "1.3rem",
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur
-              </Typography>
+              <img src="/timestone_bold_logo.png" alt="timestone logo" style={{ maxHeight: 120 }} />
             </Box>
             <Grid container>
               {/* {!isMobile && (
@@ -56,17 +44,32 @@ const HeroContent = (props: any) => {
                   <img src="/placeholder_icon.svg" alt="timestone-logo" style={{ width: '96px', height: '96px', animation: 'rotation 60s infinite linear' }} />
                 </Box>
               )} */}
-              <Box>
+              <Box sx={{ mx: 20, mt: 2 }}>
                 <Typography
                   align="center"
                   color="textPrimary"
                   variant="h1"
-                  sx={{ fontSize: "3.7rem" }}
+                  sx={{ fontSize: "2.7rem" }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                  Archive and Collect Web Pages on the Blockchain as NFTs.
                 </Typography>
               </Box>
             </Grid>
+            {/* <Box sx={{ textAlign: "center" }}>
+              <Typography
+                align="center"
+                color="textSecondary"
+                variant="body1"
+                sx={{
+                  pt: 1,
+                  pb: 2,
+                  fontFamily: "Cardo",
+                  fontSize: "1.3rem",
+                }}
+              >
+                Lorem ipsum dolor sit amet consectetur
+              </Typography>
+            </Box> */}
           </Box>
         </Grid>
       </Container>
