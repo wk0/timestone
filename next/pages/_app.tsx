@@ -1,24 +1,30 @@
 import type { AppProps } from "next/app";
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from "react";
 import ThemeProvider from "../theme/ThemeProvider";
-import { WagmiConfig } from "wagmi";
+import { WagmiConfig, chain } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { createClient, configureChains, defaultChains } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from '../createEmotionCache';
-import type { NextPage } from 'next';
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import createEmotionCache from "../createEmotionCache";
+import type { NextPage } from "next";
 
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
-import '../styles/globals.css';
+import "../styles/globals.css";
 
-const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
-  publicProvider(),
-]);
+const { chains, provider, webSocketProvider } = configureChains(
+  [
+    // chain.mainnet,
+    chain.foundry,
+    chain.polygonMumbai,
+    // chain.polygon
+  ],
+  [publicProvider()]
+);
 
 // Set up client
 const client = createClient({
@@ -63,7 +69,6 @@ interface MyAppProps extends AppProps {
 }
 
 function MyApp(props: MyAppProps) {
-
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout ?? ((page: any) => page);
 
@@ -77,7 +82,7 @@ function MyApp(props: MyAppProps) {
             customTheme={{
               "--ck-connectbutton-background": "#28ED9E",
               "--ck-connectbutton-color": "#000",
-              "--ck-font-family": "Courier Prime"
+              "--ck-font-family": "Courier Prime",
             }}
             options={{
               embedGoogleFonts: true,
