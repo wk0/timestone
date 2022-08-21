@@ -21,7 +21,7 @@ const GridCard = (props: any) => {
       >
         <Box>
           <ButtonBase style={{ width: '100%', borderRadius: '8px' }}>
-            <Card elevation={20} style={{ position: 'relative', borderRadius: '16px', width: '100%' }}>
+            <Card elevation={20} style={{ position: 'relative', borderRadius: '0px', width: '100%' }}>
               <CardMedia
                 sx={{
                   height: 240,
@@ -41,12 +41,13 @@ const GridCard = (props: any) => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  textAlign: 'center',
                   padding: '10px',
                   paddingBottom: '10px !important',
                   minHeight: '40px',
                 }}
               >
-                <div style={{ display: 'block', textAlign: 'left', textOverflow: 'ellipsis', wordWrap: 'break-word', overflow: 'hidden', maxHeight: '2.6em', lineHeight: '1.8em', fontSize: '14px', fontFamily: 'Cardo' }}>
+                <div style={{ display: 'flex', textTransform: 'lowercase', justifyContent: 'center', margin: '0 auto', textOverflow: 'ellipsis', wordWrap: 'break-word', overflow: 'hidden', maxHeight: '2.6em', lineHeight: '1.8em', fontSize: '14px', fontFamily: 'Cardo' }}>
                   {stone.capture_url}
                 </div>
               </CardContent>
