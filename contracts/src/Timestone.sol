@@ -6,33 +6,31 @@ import "openzeppelin-contracts/contracts/utils/Strings.sol";
 import "openzeppelin-contracts/contracts/access/Ownable.sol";
 
 error MintPriceNotPaid();
-error MaxSupply();
+// error MaxSupply();
 error NonExistentTokenURI();
 error WithdrawTransfer();
+error IpfsURINot59();
 
-contract NFT is ERC721, Ownable {
+contract Timestone is ERC721, Ownable {
     using Strings for uint256;
-    string public baseURI;
     uint256 public currentTokenId;
-    uint256 public constant TOTAL_SUPPLY = 10_000;
-    uint256 public constant MINT_PRICE = 0.08 ether;
 
-    constructor(
-        string memory _name,
-        string memory _symbol,
-        string memory _baseURI
-    ) ERC721(_name, _symbol) {
-        baseURI = _baseURI;
-    }
+    uint256 public constant MINT_PRICE = 0.0001 ether;
 
-    function mintTo(address recipient) public payable returns (uint256) {
+    mapping(uint256 => string) private tokenURIs;
+
+    constructor() ERC721("Timestone", "TMSTN") {}
+
+    function mintTo(address recipient, string memory uri)
+        public
+        payable
+        returns (uint256)
+    {
         if (msg.value != MINT_PRICE) {
             revert MintPriceNotPaid();
         }
         uint256 newTokenId = ++currentTokenId;
-        if (newTokenId > TOTAL_SUPPLY) {
-            revert MaxSupply();
-        }
+        tokenURIs[newTokenId] = uri;
         _safeMint(recipient, newTokenId);
         return newTokenId;
     }
@@ -47,10 +45,12 @@ contract NFT is ERC721, Ownable {
         if (ownerOf(tokenId) == address(0)) {
             revert NonExistentTokenURI();
         }
-        return
-            bytes(baseURI).length > 0
-                ? string(abi.encodePacked(baseURI, tokenId.toString()))
-                : "";
+
+        string memory cid = tokenURIs[tokenId];
+        if (bytes(cid).length == 0) {
+            revert NonExistentTokenURI();
+        }
+        return string.concat("ipfs://", cid, "/metadata.json");
     }
 
     function withdrawPayments(address payable payee) external onlyOwner {
