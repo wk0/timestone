@@ -141,7 +141,6 @@ const Mint = ({ urlInput, isSnapshotting, snapshotURI }: MintProps) => {
     const blob = dataURItoBlob(croppedImgData);
 
     formData.append("file", blob, "crop.png");
-    z;
     formData.append("name", "Test Name");
     formData.append("description", "Test Description");
 
