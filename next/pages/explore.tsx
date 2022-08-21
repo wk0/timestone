@@ -52,7 +52,6 @@ const Explore: NextPage = () => {
       <main>
         <Box
           sx={{
-            pt: isMobile ? 4 : 16,
             pb: 0,
           }}
         >

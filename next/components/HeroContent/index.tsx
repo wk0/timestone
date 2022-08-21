@@ -34,7 +34,6 @@ const HeroContent = (props: any) => {
         }}
       >
         <Grid container>
-
         <Box style={{ paddingTop: "1.3rem", paddingBottom: "3rem" }}>
           <Grid container>
             {/* {!isMobile && (
