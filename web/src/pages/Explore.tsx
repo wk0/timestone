@@ -33,7 +33,7 @@ const Explore = () => {
   return (
     <Box
       sx={{
-        pt: (isMobile) ? 4 : 16,
+        pt: 0,
         pb: 0
       }}
     >

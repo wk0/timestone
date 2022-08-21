@@ -39,11 +39,17 @@ const prepopulatedTags = [
     tag: "twitter",
   },
   {
-    tag: "news",
+    tag: "headlines",
   },
   {
     tag: "memes",
   },
+  {
+    tag: "cringe",
+  },
+  {
+    tag: "looksrare",
+  }
 ];
 
 interface MintProps {
@@ -109,10 +115,10 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
         return (
           <>
             <Grid container direction="column" alignItems="center" justifyContent="center" spacing={3}>
-              <Grid item sx={{ width: '100%' }}>
-                <Box sx={{ paddingRight: 0, width: '100%', mt: 4, px: 36 }}>
+              <Grid item sx={{ width: '1050px' }}>
+                <Box style={{ paddingLeft: '0', paddingRight: '0'}} sx={{ paddingRight: 0, width: '100%', mt: 4, px: 36 }}>
                   {snapshot && (
-                    <Box style={{ outline: '3px solid #28ED9E', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
+                    <Box style={{ outline: '1px solid #010101', position: 'relative', width: '100%', paddingTop: '56.25%', opacity: (isLoaded) ? 1 : 0.4 }}>
                       <Cropper
                         //@ts-ignore
                         ref={divRef}
@@ -134,8 +140,22 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                 </Box>
               </Grid>
               <Grid item sx={{ minWidth: 600 }}>
-                <Box>
+                <Box style={{ width: '1020px'}}>
                   <Autocomplete
+                    multiple
+                    id="tags-outlined"
+                    options={prepopulatedTags}
+                    getOptionLabel={(tagData: any) => tagData.tag}
+                    defaultValue={[{ tag: "twitter" }]}
+                    filterSelectedOptions
+                    renderInput={(params:any) => (
+                      <TextField
+                        {...params}
+                        placeholder="Add Tags"
+                      />
+                    )}
+                  />
+                  {/* <Autocomplete
                     multiple
                     id="tags-standard"
                     options={prepopulatedTags}
@@ -148,7 +168,7 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                         placeholder=" Add Tag"
                       />
                     )}
-                  />
+                  /> */}
                 </Box>
               </Grid>
             </Grid>
@@ -158,16 +178,16 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
         return (
           <>
             <Grid container direction="column" alignItems="center" justifyContent="center" sx={{ mt: 3, mb: 6 }}>
-              <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 3 }}>
-                <Typography sx={{ fontSize: '18px' }}>
-                  Archive this snapshot to your digital wallet collection.
+              <Grid item sx={{ width: '100%', textAlign: 'center', px: 36, my: 4 }}>
+                <Typography sx={{ fontSize: '22px' }}>
+                  Add this snapshot to your digital wallet collection.
                 </Typography>
               </Grid>
               <Grid item>
                 <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                   <Box>
                     <ConnectKitButton />
-                  </Box> 
+                  </Box>
                   {address ? (
                     <Box>
                       <Typography variant="subtitle1" sx={{
@@ -188,8 +208,8 @@ const Mint = ({ urlInput, isSnapshotting }: MintProps) => {
                         flexWrap: 'wrap',
                         mt: 1
                       }}>
-                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px' }} />
-                        Secure wallet connection
+                        <VerifiedUserIcon sx={{ fontSize: '14px', mr: '3px', opacity: 0.78 }} />
+                        Secure Connection
                       </Typography>
                     </Box>
                   )}

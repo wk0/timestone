@@ -5,6 +5,8 @@ import { useEffect, Suspense, lazy } from "react";
 import LoadingScreen from "../components/LoadingScreen";
 import HeroContent from "../components/HeroContent";
 import InputBox from "../components/InputBox";
+import Divider from "../components/Divider";
+import Footer from "../components/Footer";
 import Explore from "./explore";
 import MainLayout from "../layouts/MainLayout";
 
@@ -20,7 +22,9 @@ function Landing() {
       <>
         <HeroContent />
         <InputBox />
+        <Divider />
         <Explore />
+        <Footer />
       </>
 
       <footer></footer>
